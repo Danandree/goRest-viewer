@@ -1,0 +1,21 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    width:90%;
+    margin:auto;
+    max-width: 600px;
+    margin-top: 10px;
+    text-align: justify;
+}
+button{
+    max-width: 200px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+h3{
+    text-align: center;
+}
+p{
+    padding: 10px;
+    text-justify: inter-word;
+}
