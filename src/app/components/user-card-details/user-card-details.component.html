@@ -1,0 +1,20 @@
+@if(user){
+<mat-card class="user-details-container">
+    <!-- <div class="data"> -->
+    <h2><strong>{{user.name}}</strong></h2>
+    <h3><strong>{{user.email}}</strong></h3>
+    <p><strong>Gender:</strong> {{user.gender}}</p>
+    <p><strong>Status:</strong> {{user.status}}</p>
+    <!-- </div> -->
+    <div class="buttons">
+        <button mat-stroked-button><mat-icon>edit</mat-icon>Crea post</button>
+        <button mat-stroked-button color="warn"><mat-icon>delete</mat-icon>Elimina</button>
+    </div>
+</mat-card>
+}
+@else{<mat-spinner></mat-spinner>}
+<mat-divider></mat-divider>
+@if(postsList){<h2 class="title">Post dell'utente</h2>
+@for(post of postsList; track post){
+<app-post-card [post]="post"></app-post-card>
+}}

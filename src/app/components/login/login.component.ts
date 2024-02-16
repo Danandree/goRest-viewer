@@ -9,7 +9,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Validator } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -29,17 +28,19 @@ export class LoginComponent {
   hide = true;
   private _tokenUrl: string = 'https://gorest.co.in/my-account/access-tokens'
   tokenControl: FormControl = new FormControl('', [Validators.required]);
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-   this.authService.tryAutoLogin()
+    this.authService.tryAutoLogin()
   }
+
   goToTokenUrl(): void {
     window.location.href = this._tokenUrl;
   }
 
   checkToken(): void {
     console.log(this.tokenControl.value);
-   this.authService.checkToken(this.tokenControl.value);
+    this.authService.checkToken(this.tokenControl.value);
   }
 }

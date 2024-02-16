@@ -1,0 +1,39 @@
+.user-details-container {
+    width: 95%;
+    padding: 15px;
+    border: solid red 2px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    margin: auto;
+    gap: 20px;
+}
+.data{
+    display: flex;
+    justify-content: space-around;
+}
+
+mat-spinner {
+    margin: auto;
+}
+.title{margin: auto;}
+
+@media screen and (min-width: 700px) {
+    .user-details-container {
+        /* width: 100%; */
+        /* display: flex; */
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .buttons {
+        flex-direction: column;
+        margin: 0;
+        gap: 20px;
+    }
+
+}

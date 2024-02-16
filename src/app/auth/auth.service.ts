@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User, ErrorFromGoRestApi } from '../interfaces/go-rest-apidata-structure';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class AuthService {
   get isLogged(): boolean { return this._isLogged; };
   get token(): string | null { return this._token; };
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private goRestApi: GoRestAPIService) { }
 
   setHttpHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -26,7 +26,7 @@ export class AuthService {
   }
   checkToken(token: string | null): void {
     this._token = token;
-    this.http.get<User>(this.urlForCheckToken, { headers: this.setHttpHeaders() }).subscribe({
+    this.goRestApi.getOneObjForTokenCheck(token).subscribe({
       next: (user: User) => { 
         localStorage.setItem('isLogged', 'true');
         localStorage.setItem('token', token!);

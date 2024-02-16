@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserCardMinimalComponent } from './user-card-minimal.component';
+import { PostCardComponent } from '../../components/post-card/post-card.component';
 
-describe('UserCardMinimalComponent', () => {
-  let component: UserCardMinimalComponent;
-  let fixture: ComponentFixture<UserCardMinimalComponent>;
+describe('PostCardComponent', () => {
+  let component: PostCardComponent;
+  let fixture: ComponentFixture<PostCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserCardMinimalComponent]
+      imports: [PostCardComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserCardMinimalComponent);
+    fixture = TestBed.createComponent(PostCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
