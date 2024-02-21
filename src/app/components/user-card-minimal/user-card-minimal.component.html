@@ -1,4 +1,7 @@
-<mat-card [routerLink]="['/users', user.id]">
+<mat-card [routerLink]="['/lists/users', user.id]">
     <mat-card-title>{{user.name}}</mat-card-title>
     <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+    <mat-card-footer>
+        <button mat-icon-button color="primary" (click)="deleteUser($event)"><mat-icon>delete</mat-icon></button>
+    </mat-card-footer>
 </mat-card>

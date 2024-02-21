@@ -4,7 +4,7 @@
             href="https://gorest.co.in">gorest.co.in</a>,
         clicca
         sul pulsante per accedere al sito e generare il token</p>
-    <button mat-stroked-button color="primary" (click)="goToTokenUrl()">
+    <button mat-raised-button (click)="goToTokenUrl()">
         <mat-icon>add</mat-icon>Richiedi token
     </button>
     <mat-form-field>
@@ -15,7 +15,7 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
     </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="checkToken()" [disabled]="!tokenControl.valid">
+    <button mat-raised-button (click)="checkToken()" [disabled]="!tokenControl.valid">
         <mat-icon>login</mat-icon>Invia token
     </button>
 </div>

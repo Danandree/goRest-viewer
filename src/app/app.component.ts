@@ -1,15 +1,18 @@
+import { inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { AuthService } from './auth/auth.service';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterOutlet,
     NavbarComponent,
   ],
@@ -18,4 +21,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 })
 export class AppComponent {
   title = 'goRest-viewer';
+  // authService = inject(AuthService);
+
+  // ngOnInit(): void {
+  //   this.authService.tryAutoLogin()
+  // }
 }

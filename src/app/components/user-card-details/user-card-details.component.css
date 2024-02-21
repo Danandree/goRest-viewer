@@ -1,19 +1,37 @@
 .user-details-container {
     width: 95%;
     padding: 15px;
-    border: solid red 2px;
+    /* border: solid red 2px; */
     margin: auto;
     margin-top: 10px;
 }
 
+mat-card {
+    padding: 10px;
+}
+
 .buttons {
     display: flex;
-    margin: auto;
-    gap: 20px;
+    justify-content: end;
+    /* margin: auto; */
+    gap: 10px;
 }
-.data{
+
+.data {
     display: flex;
     justify-content: space-around;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: green;
 }
 
 mat-spinner {

@@ -1,6 +1,26 @@
-<div class="post-card">
-    <mat-card>
+<mat-card>
+    <mat-card-header>
         <mat-card-title>{{post.title}}</mat-card-title>
         <mat-card-subtitle>{{post.body}}</mat-card-subtitle>
-    </mat-card>
-</div>
+    </mat-card-header>
+    @if(user){
+    <mat-card-footer>
+        <button mat-stroked-button>{{user.name}}</button>
+    </mat-card-footer>
+    }
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Commenti: {{commentsList.length}}
+        </mat-expansion-panel-header>
+        @for(comment of commentsList; track $index){
+        <!-- <app-comment-card [comment]="comment"></app-comment-card> -->
+        <p><strong>{{comment.name}}: </strong>{{comment.body}}</p>
+        }
+        <div class="add-comment-button">
+
+            <button mat-stroked-button>
+                <mat-icon>add</mat-icon>Aggiungi commento
+            </button>
+        </div>
+    </mat-expansion-panel>
+</mat-card>

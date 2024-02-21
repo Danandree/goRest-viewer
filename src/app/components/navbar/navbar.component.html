@@ -1,20 +1,30 @@
 <div class="navbar-container">
     <div class="title">
+        <span class="spacer"></span>
         <h1>GoRest Viewer</h1>
-        <button mat-fab (click)="logout()">
-            <mat-icon>logout</mat-icon>
-        </button>
+        @if(isUserLogged()){
+        <div class="spacer">
+
+            <button mat-mini-fab color="primary" (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+        }@else {
+
+        <span calss="spacer"></span>
+        }
     </div>
     @if(isUserLogged()){
+    <mat-divider></mat-divider>
     <div class="buttons">
-        <button mat-fab>
-            <mat-icon>group</mat-icon>
+        <button mat-raised-button [routerLink]="['/lists/users']">
+            <mat-icon>group</mat-icon>Utenti
         </button>
-        <button mat-fab>
-            <mat-icon>search</mat-icon>
+        <button mat-raised-button [routerLink]="['/lists/users']">
+            <mat-icon>search</mat-icon>Cerca
         </button>
-        <button mat-fab>
-            <mat-icon>post_add</mat-icon>
+        <button mat-raised-button [routerLink]="['/lists/posts']">
+            <mat-icon>post_add</mat-icon>Posts
         </button>
     </div>
     }@else {

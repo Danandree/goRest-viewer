@@ -40,7 +40,7 @@ export class LoginComponent {
   }
 
   checkToken(): void {
-    console.log(this.tokenControl.value);
+    console.log(this.tokenControl.value,"TOKEN CONTROL VALUE");
     this.authService.checkToken(this.tokenControl.value);
   }
 }

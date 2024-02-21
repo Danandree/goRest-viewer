@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User, Post, ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 import { PostCardComponent } from '../post-card/post-card.component';
@@ -30,20 +30,20 @@ export class UserCardDetailsComponent {
   user!: User;
   postsList!: Post[];
 
-  constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService) { }
+  constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(userId => {
       this.goRestApi.getUserById(userId['id']).subscribe({
         next: (user: User) => { this.user = user; this.getUserPosts(); }, //Subscriptio nested Cosa fare?
-        error: (err: ErrorFromGoRestApi) => { console.log(err); }
+        error: (err: ErrorFromGoRestApi) => { console.log(err);this.router.navigate(['/404']); }
       })
     });
   }
 
   getUserPosts(): void {
     this.goRestApi.getUserPosts(this.user.id).subscribe({
-      next: (posts: Post[]) => { this.postsList = posts;console.log(this.postsList); },
+      next: (posts: Post[]) => { this.postsList = posts; },
       error: (err: ErrorFromGoRestApi) => { console.log(err); }
     })
   }

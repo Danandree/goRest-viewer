@@ -1,0 +1,35 @@
+<!-- @for(obj of objList; track $index){
+    @if(typeOfObj == 'users'){<app-user-card-minimal [user]="obj"></app-user-card-minimal>}
+    @if(typeOfObj == 'posts'){<app-post-card [post]="obj"></app-post-card>}
+} -->
+<div class="list-container">
+    <div class="search">
+        <div class="request">
+            <mat-form-field>
+                <mat-label>Input</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div class="type">
+            <mat-form-field>
+                <mat-label>Select</mat-label>
+                <mat-select>
+                    <mat-option value="one">First option</mat-option>
+                    <mat-option value="two">Second option</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    @if(typeOfObj == 'users'){
+    @for(user of userList; track $index){
+    <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
+    }
+    }
+    @if (typeOfObj == 'posts') {
+
+    @for(post of postList; track $index){
+    <app-post-card [post]="post"></app-post-card>
+    }
+    }
+
+</div>
