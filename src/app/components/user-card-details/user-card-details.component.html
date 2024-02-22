@@ -1,29 +1,30 @@
+@if(user){
 <div class="user-details-container">
-    @if(user){
     <mat-card>
-        <!-- <div class="data"> -->
-            <div class="title">
-                <h2><strong>{{user.name}}</strong></h2>
-                <div class="user-status"></div>
-            </div>
-        <h3><strong>{{user.email}}</strong></h3>
+        <div class="user-status" [ngClass]="{'red': user.status == 'inactive', 'green': user.status == 'active'}"></div>
+        <h3><strong>{{user.name}}</strong></h3>
+        <h4><strong>{{user.email}}</strong></h4>
         <p><strong>Genere:</strong> {{user.gender}}</p>
-        <!-- <p><strong>Stato:</strong> {{user.status}}</p> -->
-        <!-- </div> -->
-
+        <p><strong>Id:</strong> {{user.id}}</p>
         <div class="buttons">
-            <button mat-stroked-button><mat-icon>edit</mat-icon>Crea post</button>
+            @if(!createPost){
+            <button mat-stroked-button (click)="openCreatePost(false)"><mat-icon>edit</mat-icon>Crea post</button>
+            }
             <button mat-stroked-button color="warn"><mat-icon>delete</mat-icon>Elimina</button>
         </div>
     </mat-card>
-    }
-    @else{<mat-spinner></mat-spinner>
-    }
     <!-- <mat-divider></mat-divider> -->
-    @if(postsList){
+    @if(createPost){
+    <app-create-post [userId]="user.id" (closeCreatePostComponent)="openCreatePost($event)"></app-create-post>
+    }
+    @if(postsList && postsList.length > 0){
     <h2>Post dell'utente</h2>
     @for(post of postsList; track post){
     <app-post-card [post]="post"></app-post-card>
     }
     }
 </div>
+}
+@else{
+<mat-spinner></mat-spinner>
+}

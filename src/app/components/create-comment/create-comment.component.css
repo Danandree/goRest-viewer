@@ -1,0 +1,11 @@
+.create-comment{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: auto;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

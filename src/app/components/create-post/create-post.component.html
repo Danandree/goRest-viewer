@@ -1,0 +1,39 @@
+<mat-card>
+    <h1>Crea un nuovo post</h1>
+    <form [formGroup]="controlGroup" class="create-post-card">
+        @if(!userId){
+
+            <mat-form-field>
+                <mat-label>User id</mat-label>
+                <input matInput placeholder="84529447" formControlName="user_id" required>
+                @if (controlGroup.get('user_id')?.invalid) {
+                    <mat-error>{{getErrorMessage("user_id")}}</mat-error>
+                }
+            </mat-form-field>
+        }
+        <mat-form-field>
+            <mat-label>Titolo</mat-label>
+            <input matInput placeholder="Lorem ipsum dolor sit." formControlName="title" required>
+            @if (controlGroup.get('title')?.invalid) {
+            <mat-error>{{getErrorMessage("title")}}</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Corpo</mat-label>
+            <textarea matInput placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, omnis."
+                formControlName="body" required></textarea>
+            @if (controlGroup.get('body')?.invalid) {
+            <mat-error>{{getErrorMessage("body")}}</mat-error>
+            }
+        </mat-form-field>
+    </form>
+    <div class="buttons">
+
+        <button mat-stroked-button (click)="createPost()" [disabled]="controlGroup.invalid">
+            <mat-icon>add</mat-icon>Crea post
+        </button>
+        <button mat-stroked-button color="warn" (click)="clearPost()">
+            <mat-icon>delete</mat-icon>Elimina
+        </button>
+    </div>
+</mat-card>

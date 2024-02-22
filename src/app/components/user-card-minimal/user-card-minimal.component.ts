@@ -1,10 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { NgClass } from '@angular/common';
+
 import { User } from '../../interfaces/go-rest-apidata-structure';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
 
 import { GoRestAPIService } from '../../services/go-rest-api.service';
@@ -19,6 +22,8 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
     RouterLink,
     MatIconModule,
     MatButtonModule,
+    NgClass,
+    MatDividerModule,
   ],
   templateUrl: './user-card-minimal.component.html',
   styleUrl: './user-card-minimal.component.css'

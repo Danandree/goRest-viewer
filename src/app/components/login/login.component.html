@@ -1,10 +1,10 @@
-<div class="login">
+<mat-card class="login">
     <h3><strong>Attenzione: </strong></h3>
     <p>Per accedere al servizio bisogna prima essere in possesso di un token di autenticazione dal sito <a
             href="https://gorest.co.in">gorest.co.in</a>,
         clicca
         sul pulsante per accedere al sito e generare il token</p>
-    <button mat-raised-button (click)="goToTokenUrl()">
+    <button mat-raised-button color="primary" (click)="goToTokenUrl()">
         <mat-icon>add</mat-icon>Richiedi token
     </button>
     <mat-form-field>
@@ -15,7 +15,7 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
     </mat-form-field>
-    <button mat-raised-button (click)="checkToken()" [disabled]="!tokenControl.valid">
+    <button mat-raised-button color="primary" (click)="checkToken()" [disabled]="!tokenControl.valid">
         <mat-icon>login</mat-icon>Invia token
     </button>
-</div>
+</mat-card>

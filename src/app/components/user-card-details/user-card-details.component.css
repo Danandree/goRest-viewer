@@ -1,6 +1,6 @@
 .user-details-container {
     width: 95%;
-    padding: 15px;
+    /* padding: 15px; */
     /* border: solid red 2px; */
     margin: auto;
     margin-top: 10px;
@@ -28,12 +28,25 @@ mat-card {
 }
 
 .user-status {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    width: 15%;
+    aspect-ratio: 1 / 1;
+    border-radius: 0 3px 0 100%;
+    background-color: grey;
+    /* border: solid black 2px; */
+}
+.red{
+    background-color: red;
+}
+.green{
     background-color: green;
 }
-
+h2{
+    text-align: center;
+    margin-top:10px;
+}
 mat-spinner {
     margin: auto;
 }
@@ -52,3 +65,12 @@ mat-spinner {
     }
 
 }
+
+.red-border{
+    border: solid red 4px;
+}
+
+.green-border{
+    border: solid green 4px;
+}
+

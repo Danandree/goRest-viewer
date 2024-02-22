@@ -6,7 +6,7 @@
     <div class="search">
         <div class="request">
             <mat-form-field>
-                <mat-label>Input</mat-label>
+                <mat-label>Cerca:</mat-label>
                 <input matInput>
             </mat-form-field>
         </div>
@@ -21,15 +21,19 @@
         </div>
     </div>
     @if(typeOfObj == 'users'){
-    @for(user of userList; track $index){
-    <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
-    }
+        @for(user of userList; track $index){
+            <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
+        }
     }
     @if (typeOfObj == 'posts') {
-
-    @for(post of postList; track $index){
-    <app-post-card [post]="post"></app-post-card>
+        
+        @for(post of postList; track $index){
+            <app-post-card [post]="post"></app-post-card>
+        }
     }
-    }
-
+    <!-- <mat-paginator [length]="100" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+    </mat-paginator> -->
 </div>
+<button mat-fab color="primary" class="add-button" (click)="createObj()">
+    <mat-icon>add</mat-icon>
+</button>

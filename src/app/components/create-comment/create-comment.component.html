@@ -1,0 +1,32 @@
+<form [formGroup]="controlGroup" class="create-comment">
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Mario Rossi" formControlName="name" required>
+        @if (controlGroup.get('name')?.invalid) {
+        <mat-error>{{getErrorMessage("name")}}</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="mario@example.com" formControlName="email" required>
+        @if (controlGroup.get('email')?.invalid) {
+        <mat-error>{{getErrorMessage("email")}}</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Corpo</mat-label>
+        <textarea matInput placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, omnis."
+            formControlName="body" required></textarea>
+        @if (controlGroup.get('body')?.invalid) {
+        <mat-error>{{getErrorMessage("body")}}</mat-error>
+        }
+    </mat-form-field>
+</form>
+<div class="buttons">
+    <button mat-stroked-button color="primary" (click)="createComment()" [disabled]="controlGroup.invalid">
+        <mat-icon>add</mat-icon>Aggiungi
+    </button>
+    <button mat-stroked-button color="warn" (click)="closeCreateComment(false)">
+        <mat-icon>cancel</mat-icon>Annulla
+    </button>
+</div>

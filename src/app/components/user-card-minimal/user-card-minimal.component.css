@@ -7,3 +7,12 @@ mat-card-footer{
     display: flex;
     justify-content: end;
 }
+
+.red-border{
+    border: solid red 2px;
+    border-bottom: solid red 10px;
+}
+
+.green-border{
+    border: solid green 2px;
+}

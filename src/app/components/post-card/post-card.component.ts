@@ -9,6 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 
+import { CreateCommentComponent } from '../create-comment/create-comment.component';
+
+import { RouterLink, Router } from '@angular/router';
+
 @Component({
   selector: 'app-post-card',
   standalone: true,
@@ -17,6 +21,8 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
+    CreateCommentComponent,
+    RouterLink,
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'
@@ -26,14 +32,18 @@ export class PostCardComponent {
   user!: User;
   commentsList: Comment[] = [];
 
-  constructor(private goRestApi: GoRestAPIService) { }
+  addCommentComponent = false;
+
+  constructor(private goRestApi: GoRestAPIService, private router: Router) { }
   ngOnInit() {
     this.getComments();
-    this.getUserById(this.post.user_id);
+    if (!this.user) {
+      this.getUserById(this.post.user_id);
+    }
   }
   getComments() {
     this.goRestApi.getCommentFromPostId(this.post.id).subscribe({
-      next: (data: any) => {this.commentsList = data;},
+      next: (data: any) => { this.commentsList = data; },
       error: (err) => { console.log(err); }
     });
   }
@@ -41,7 +51,16 @@ export class PostCardComponent {
   getUserById(id: number) {
     this.goRestApi.getUserById(id).subscribe({
       next: (data: any) => { this.user = data; },
-      error: (err) => { return; }
+      error: (err) => { console.log(err); }
     })
+  }
+
+  addCommentToggle(refreshComments: boolean) {
+    this.addCommentComponent = !this.addCommentComponent;
+    if (refreshComments) { this.getComments(); } //SPOSTARE
+  }
+
+  isUserPage() {
+    return this.router.url.includes('users') ? true : false;
   }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { NgClass } from '@angular/common';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { User, Post, ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
 import { GoRestAPIService } from '../../services/go-rest-api.service';
@@ -11,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 
+import { CreatePostComponent } from '../create-post/create-post.component';
+
 @Component({
   selector: 'app-user-card-details',
   standalone: true,
@@ -21,6 +25,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatIconModule,
     PostCardComponent,
     MatDividerModule,
+    NgClass,
+    CreatePostComponent,
   ],
   templateUrl: './user-card-details.component.html',
   styleUrl: './user-card-details.component.css'
@@ -29,6 +35,8 @@ export class UserCardDetailsComponent {
 
   user!: User;
   postsList!: Post[];
+
+  createPost = false;
 
   constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService, private router: Router) { }
 
@@ -46,5 +54,11 @@ export class UserCardDetailsComponent {
       next: (posts: Post[]) => { this.postsList = posts; },
       error: (err: ErrorFromGoRestApi) => { console.log(err); }
     })
+  }
+
+  openCreatePost(refreshPosts: boolean): void{
+    this.createPost = !this.createPost;
+    console.log(refreshPosts);
+    if(refreshPosts){this.getUserPosts();}
   }
 }
