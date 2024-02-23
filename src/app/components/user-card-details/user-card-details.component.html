@@ -7,10 +7,10 @@
         <p><strong>Genere:</strong> {{user.gender}}</p>
         <p><strong>Id:</strong> {{user.id}}</p>
         <div class="buttons">
-            <button mat-stroked-button (click)="openCreatePost(false)" [disabled]="createPost">
+            <button mat-raised-button (click)="openCreatePost(false)" [disabled]="createPost">
                 <mat-icon>edit</mat-icon>Crea post
             </button>
-            <button mat-stroked-button color="warn" (click)="deleteUser()">
+            <button mat-raised-button color="warn" (click)="deleteUser()">
                 <mat-icon>delete</mat-icon>Elimina
             </button>
         </div>

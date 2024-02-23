@@ -2,6 +2,7 @@ mat-card{
     width: 95%;
     margin:auto;
     margin-top: 10px;
+    background-color: rgb(185, 221, 255);
 }
 
 h1{

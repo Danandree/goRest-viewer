@@ -1,28 +1,19 @@
-<div class="title">
-    <h1>GoRest Viewer</h1>
-</div>
-@if(isUserLogged()){
-<!-- <div class="buttons">
-    <button mat-raised-button [routerLink]="['/users']">
-        <mat-icon>group</mat-icon>Utenti
-    </button>
-    <button mat-raised-button [routerLink]="['/posts']">
-        <mat-icon>post_add</mat-icon>Posts
-    </button>
-    <button mat-raised-button color="warn" (click)="logout()">Logout
-        <mat-icon>logout</mat-icon>
-    </button>
-</div> -->
-<div class="buttons">
-    <button mat-raised-button [routerLink]="['/lists/users']">
-        <mat-icon>group</mat-icon>Utenti
-    </button>
-    <button mat-raised-button [routerLink]="['/lists/posts']">
-        <mat-icon>post_add</mat-icon>Posts
-    </button>
-    <button mat-raised-button color="warn" (click)="logout()">Logout
-        <mat-icon>logout</mat-icon>
-    </button>
-</div>
-<mat-divider></mat-divider>
-}
+<mat-card class="navbar-container">
+    <div class="title">
+        <h1>GoRest Viewer</h1>
+    </div>
+    @if(isUserLogged()){
+    <div class="buttons">
+        <button mat-raised-button [routerLink]="['/lists/users']">
+            <mat-icon>group</mat-icon>Utenti
+        </button>
+        <button mat-raised-button [routerLink]="['/lists/posts']">
+            <mat-icon>post_add</mat-icon>Posts
+        </button>
+        <button mat-raised-button color="warn" (click)="logout()">Logout
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+    <mat-divider></mat-divider>
+    }
+</mat-card>

@@ -5,6 +5,8 @@ mat-card{
     text-align: justify;
     /* padding: 50px; */
     /* border:red 2px solid; */
+    background-color: rgb(185, 221, 255);
+
 }
 
 mat-card-footer{
@@ -14,6 +16,8 @@ mat-card-footer{
 }
 mat-expansion-panel{
     margin-top:10px;
+    background-color: rgb(159, 209, 255);
+
 }
 .add-comment-button{
     display: flex;

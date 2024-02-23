@@ -15,16 +15,6 @@
             <mat-error>{{getErrorMessage("email")}}</mat-error>
             }
         </mat-form-field>
-        <!-- <mat-radio-group aria-label="Select an option">
-            <mat-label>Genere:</mat-label>
-            <mat-radio-button value="male">Maschio</mat-radio-button>
-            <mat-radio-button value="female">Femmina</mat-radio-button>
-        </mat-radio-group>
-        <mat-radio-group aria-label="Select an option">
-            <mat-label>Stato:</mat-label>
-            <mat-radio-button value="active">Attivo</mat-radio-button>
-            <mat-radio-button value="inactive">Inattivo</mat-radio-button>
-        </mat-radio-group> -->
         <div class="multiple-choice">
 
             <mat-form-field class=>
@@ -55,10 +45,10 @@
 
     </form>
     <div class="buttons">
-        <button mat-stroked-button (click)="createUser()" [disabled]="controlGroup.invalid">
+        <button mat-raised-button (click)="createUser()" [disabled]="controlGroup.invalid">
             <mat-icon>add</mat-icon>Crea utente
         </button>
-        <button mat-stroked-button color="warn" (click)="clearForm()">
+        <button mat-raised-button color="warn" (click)="clearForm()">
             <mat-icon>delete</mat-icon>Cancella
         </button>
     </div>

@@ -2,12 +2,13 @@
     width: 95%;
     /* padding: 15px; */
     /* border: solid red 2px; */
-    margin: auto;
-    margin-top: 10px;
+    margin: 10px auto;
 }
 
 mat-card {
     padding: 10px;
+    background-color: rgb(185, 221, 255);
+
 }
 
 .buttons {
@@ -32,6 +33,7 @@ mat-card {
     right: 10px;
     top: 10px;
     width: 15%;
+    max-width: 50px;
     aspect-ratio: 1 / 1;
     border-radius: 0 3px 0 100%;
     background-color: grey;

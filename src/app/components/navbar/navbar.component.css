@@ -1,13 +1,16 @@
-.navbar-containerr {
+.navbar-container {
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 15px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* padding-bottom: 15px; */
     border-bottom: 2px solid black;
-    width: 100%;
+    width: 95%;
+    margin: auto;
     margin-top: 10px;
+    background-color: rgb(127, 192, 252);
+
 
     /* position: fixed;
     width:95%;
@@ -26,6 +29,7 @@
     /* max-width: 1000px; */
     /* position: sticky; */
     margin-bottom: 10px;
+
 }
 
 .title {
@@ -35,6 +39,8 @@
 
 button {
     width: 25%;
+    background-color: rgb(185, 221, 255);
+
 }
 
 .spacer {
