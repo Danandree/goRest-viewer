@@ -44,7 +44,7 @@ export class ListsComponent {
 
   searchBar = false;
 
-  pageSize = 1;
+  pageSize = 10;
   userPage = 1;
   postPage = 1;
 

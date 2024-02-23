@@ -4,7 +4,7 @@
 } -->
 <div class="list-container">
     @if(searchBar){
-    <app-search-bar [typeofObjToSearch]="typeOfObj" (reportSearchList)="updateList($event)"></app-search-bar>
+    <app-search-bar [typeofObjToSearch]="typeOfObj" (reportSearchList)="updateList($event)" (closeBar)="openSearchBar()"></app-search-bar>
     }
     <!-- <form class="search" [formGroupName]="forms">
         <div class="request">
@@ -38,16 +38,16 @@
     }
     }
     @if(!searchBar){
-    <button mat-raised-button color="primary" class="add-buttonn" (click)="loadMore()">
+    <button mat-raised-button color="primary" class="load-more-button" (click)="loadMore()">
         <mat-icon>add</mat-icon>Carica altri risulatati
     </button>
     }
-</div>
-<div class="absolute-button">
-    <button mat-fab color="primary" class="add-buttonn" (click)="createObj()">
-        <mat-icon>add</mat-icon>
-    </button>
-    <button mat-fab color="primary" class="add-buttonn" (click)="openSearchBar()">
-        @if(!searchBar){<mat-icon>search</mat-icon>}@else{<mat-icon>lists</mat-icon>}
-    </button>
+    <div class="absolute-button">
+        <button mat-fab color="primary" class="add-buttonn" (click)="createObj()">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-fab color="primary" class="add-buttonn" (click)="openSearchBar()">
+            @if(!searchBar){<mat-icon>search</mat-icon>}@else{<mat-icon>lists</mat-icon>}
+        </button>
+    </div>
 </div>

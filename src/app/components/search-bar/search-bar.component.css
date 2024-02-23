@@ -6,6 +6,10 @@
     flex-direction: column;
     margin: auto;
 }
+.search>input {
+    border: solid 1px blue;
+}
+
 .first-row{
     display: flex;
     flex-direction: row;
@@ -20,4 +24,14 @@
 .type {
     width: 25%;
     margin-left: 10px;
+}
+mat-card{
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.absolute-button{
+    position: absolute;
+    bottom:10px;
+    right: 10px;
 }

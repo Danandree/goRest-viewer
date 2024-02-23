@@ -12,7 +12,9 @@ mat-card-footer{
     justify-content: end;
     padding: 10px;
 }
-
+mat-expansion-panel{
+    margin-top:10px;
+}
 .add-comment-button{
     display: flex;
     justify-content: end;

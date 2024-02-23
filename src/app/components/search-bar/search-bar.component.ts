@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 
@@ -21,6 +22,7 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.css'
@@ -28,6 +30,7 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
 export class SearchBarComponent {
   @Input() typeofObjToSearch!: string;
   @Output() reportSearchList = new EventEmitter();
+  @Output() closeBar = new EventEmitter();
   optFields: string[] = [];
   fieldSelected: string = '';
   controlField: FormGroup = new FormGroup({
@@ -73,5 +76,8 @@ export class SearchBarComponent {
     this.controlField.get('search')?.enable();
     this.reportSearchList.emit({ data: [], obj: this.typeofObjToSearch });
     this.controlField.get('search')?.setValue('');
+  }
+  closeSearchBar(){
+    this.closeBar.emit();
   }
 }
