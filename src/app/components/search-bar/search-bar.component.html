@@ -1,0 +1,22 @@
+<form class="search" [formGroup]="controlField">
+    <div class="first-row">
+        <h2> Cerca {{translationOfObj(typeofObjToSearch)}} per: </h2>
+        <mat-form-field class="type">
+            <mat-label>Campo</mat-label>
+            <mat-select [(value)]="fieldSelected" (valueChange)="resetResult()" formControlName="field">
+                @for(obj of optFields ;track $index){
+                <mat-option [value]="obj">{{(translationOfObj(obj))}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-form-field class="request">
+        <mat-label>Cerca:</mat-label>
+        <input matInput (input)="searchQuery($event.target)" formControlName="search">
+        @if (controlField.get('search')?.value) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="resetResult()">
+            <mat-icon>close</mat-icon>
+        </button>
+        }
+    </mat-form-field>
+</form>

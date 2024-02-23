@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -12,11 +12,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-lists',
@@ -27,45 +28,50 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
+    SearchBarComponent,
   ],
   templateUrl: './lists.component.html',
   styleUrl: './lists.component.css'
 })
 export class ListsComponent {
 
-  typeOfObj: string | null = null;
+  typeOfObj: string = '';
 
-  objList: User[] | Post[] = []
   userList: User[] = [];
   postList: Post[] = [];
 
-  pageSizeOptions = [5, 10, 25, 100];
-  @Input() pageSize = 20;
-  page = 1;
+  searchBar = false;
+
+  pageSize = 1;
+  userPage = 1;
+  postPage = 1;
 
   constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService, private router: Router) { }
 
   ngOnInit() {
+
     this.route.paramMap.subscribe(params => {
-      this.typeOfObj = params.get('type');
-      if (this.typeOfObj != 'users' && this.typeOfObj != 'posts') { this.router.navigate(['/404']); }
-      if (this.typeOfObj == 'users') { this.getUsersList(); }
-      else if (this.typeOfObj == 'posts') { this.getPostsList(); }
+      if (this.searchBar) {this.searchBar = !this.searchBar}
+        this.typeOfObj = params.get('type')!;
+        if (this.typeOfObj != 'users' && this.typeOfObj != 'posts') { this.router.navigate(['/404']); }
+        if (this.typeOfObj == 'users') { this.userPage = 1; this.userList = []; this.getUsersList(); }
+        else if (this.typeOfObj == 'posts') { this.postPage = 1; this.postList = []; this.getPostsList(); }
     });
+
   }
 
   getUsersList() {
-    this.goRestApi.getUsersList(this.page, this.pageSize).subscribe({
-      next: (users: User[]) => { this.userList = users; },
+    this.goRestApi.getUsersList(this.userPage, this.pageSize).subscribe({
+      next: (users: User[]) => { this.userList = this.userList.concat(users); },
       error: (err: any) => { console.log(err); }
     });
   }
+
   getPostsList() {
-    this.goRestApi.getPostsList().subscribe({
-      next: (posts: Post[]) => { this.postList = posts; },
+    this.goRestApi.getPostsList(this.postPage, this.pageSize).subscribe({
+      next: (posts: Post[]) => { this.postList = this.postList.concat(posts); },
       error: (err: any) => { console.log(err); }
     });
   }
@@ -75,7 +81,34 @@ export class ListsComponent {
   }
 
   createObj() {
-    if (this.typeOfObj == 'users') { this.router.navigate(['/createUser']); }
-    if (this.typeOfObj == 'posts') { this.router.navigate(['/createPost']); }
+    if (this.typeOfObj == 'users') { this.router.navigate(['/users/new']); }
+    if (this.typeOfObj == 'posts') { this.router.navigate(['/posts/new']); }
+  }
+
+
+  openSearchBar() {
+    this.searchBar = !this.searchBar;
+    if (!this.searchBar) {
+      if (this.typeOfObj == 'users') {
+        this.userList = [];
+        this.userPage = 1;
+        this.getUsersList();
+      }
+      if (this.typeOfObj == 'posts') {
+        this.postList = [];
+        this.postPage = 1;
+        this.getPostsList();
+      }
+    } else { this.userList = []; this.postList = []; }
+  }
+
+  loadMore() {
+    if (this.typeOfObj == 'users') { this.userPage++; this.getUsersList(); }
+    else if (this.typeOfObj == 'posts') { this.postPage++; this.getPostsList(); }
+  }
+
+  updateList(event: any) {
+    if (event.obj == 'users') { this.userList = event.data; }
+    if (event.obj == 'posts') { this.postList = event.data; }
   }
 }

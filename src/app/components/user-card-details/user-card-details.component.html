@@ -7,10 +7,12 @@
         <p><strong>Genere:</strong> {{user.gender}}</p>
         <p><strong>Id:</strong> {{user.id}}</p>
         <div class="buttons">
-            @if(!createPost){
-            <button mat-stroked-button (click)="openCreatePost(false)"><mat-icon>edit</mat-icon>Crea post</button>
-            }
-            <button mat-stroked-button color="warn"><mat-icon>delete</mat-icon>Elimina</button>
+            <button mat-stroked-button (click)="openCreatePost(false)" [disabled]="createPost">
+                <mat-icon>edit</mat-icon>Crea post
+            </button>
+            <button mat-stroked-button color="warn" (click)="deleteUser()">
+                <mat-icon>delete</mat-icon>Elimina
+            </button>
         </div>
     </mat-card>
     <!-- <mat-divider></mat-divider> -->

@@ -66,9 +66,10 @@ export class CreatePostComponent {
       this.goRestApi.createPost(this.post).subscribe({
         next: (data: any) => {
           console.log(data);
-          this.router.navigate(['/users', this.post.user_id]);
           if (this.userId) {
             this.closeCreatePostComponent.emit(true);
+          }else{
+            this.router.navigate(['/lists/posts']);
           }
         },
         error: (err: any) => { console.log(err); },

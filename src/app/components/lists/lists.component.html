@@ -3,37 +3,51 @@
     @if(typeOfObj == 'posts'){<app-post-card [post]="obj"></app-post-card>}
 } -->
 <div class="list-container">
-    <div class="search">
+    @if(searchBar){
+    <app-search-bar [typeofObjToSearch]="typeOfObj" (reportSearchList)="updateList($event)"></app-search-bar>
+    }
+    <!-- <form class="search" [formGroupName]="forms">
         <div class="request">
-            <mat-form-field>
+
+            <mat-form-field  formControlName="search">
                 <mat-label>Cerca:</mat-label>
-                <input matInput>
+                <input matInput [value]="queryToSearch" (input)="changeEvent($event.target)"
+                    (change)="changeEvent($event.target)" [disabled]="fieldToSearch === ''">
             </mat-form-field>
         </div>
         <div class="type">
-            <mat-form-field>
-                <mat-label>Select</mat-label>
-                <mat-select>
-                    <mat-option value="one">First option</mat-option>
-                    <mat-option value="two">Second option</mat-option>
+            <mat-form-field  formControlName="field">
+                <mat-label>Campo</mat-label>
+                <mat-select [(value)]="fieldToSearch">
+                    @if(typeOfObj){
+                    @for(obj of fields ;track $index){
+                    <mat-option [value]="obj">{{translateField(obj)}}</mat-option>
+                    }}
                 </mat-select>
             </mat-form-field>
         </div>
-    </div>
+    </form> -->
     @if(typeOfObj == 'users'){
-        @for(user of userList; track $index){
-            <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
-        }
+    @for(user of userList; track $index){
+    <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
+    }
     }
     @if (typeOfObj == 'posts') {
-        
-        @for(post of postList; track $index){
-            <app-post-card [post]="post"></app-post-card>
-        }
+    @for(post of postList; track $index){
+    <app-post-card [post]="post"></app-post-card>
     }
-    <!-- <mat-paginator [length]="100" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
-    </mat-paginator> -->
+    }
+    @if(!searchBar){
+    <button mat-raised-button color="primary" class="add-buttonn" (click)="loadMore()">
+        <mat-icon>add</mat-icon>Carica altri risulatati
+    </button>
+    }
 </div>
-<button mat-fab color="primary" class="add-button" (click)="createObj()">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="absolute-button">
+    <button mat-fab color="primary" class="add-buttonn" (click)="createObj()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-fab color="primary" class="add-buttonn" (click)="openSearchBar()">
+        @if(!searchBar){<mat-icon>search</mat-icon>}@else{<mat-icon>lists</mat-icon>}
+    </button>
+</div>

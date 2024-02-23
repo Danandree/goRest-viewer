@@ -8,14 +8,16 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { CreatePostComponent } from './components/create-post/create-post.component';
 
 export const routes: Routes = [
+    // { path: 'users/:id/newPost', component: UserCardDetailsComponent, pathMatch: 'full', canActivate: [authGuard] }, // <--
     { path: 'lists/:type', component: ListsComponent, pathMatch: 'full', canActivate: [authGuard] }, // <--
+    { path: 'users/new', component: CreateUserComponent, pathMatch: 'full', canActivate: [authGuard] },
     { path: 'users/:id', component: UserCardDetailsComponent, pathMatch: 'full', canActivate: [authGuard] },
-    { path: 'createPost', component: CreatePostComponent, pathMatch: 'full', canActivate: [authGuard] },
-    { path: 'createUser', component: CreateUserComponent, pathMatch: 'full', canActivate: [authGuard] },
+    { path: 'posts/new', component: CreatePostComponent, pathMatch: 'full', canActivate: [authGuard] },
+    // { path: 'createUser', component: CreateUserComponent, pathMatch: 'full', canActivate: [authGuard] },
     // { path: 'posts', component: PostsListComponent, pathMatch: 'full', canActivate: [authGuard] },
     // { path: 'users', component: UsersListComponent, pathMatch: 'full', canActivate: [authGuard] },
     // { path: 'users/:id', component: UserCardDetailsComponent, pathMatch: 'full', canActivate: [authGuard] },
-    { path: 'login', component: LoginComponent, pathMatch: 'full'},
+    { path: 'login', component: LoginComponent, pathMatch: 'full' },
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '404', component: Page404Component, canActivate: [authGuard] },// Cambiare pagina
     { path: '**', redirectTo: '/404', pathMatch: 'full' },

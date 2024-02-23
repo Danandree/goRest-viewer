@@ -42,6 +42,7 @@ export class UserCardDetailsComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe(userId => {
+      console.log(userId,"USER ID?");
       this.goRestApi.getUserById(userId['id']).subscribe({
         next: (user: User) => { this.user = user; this.getUserPosts(); }, //Subscriptio nested Cosa fare?
         error: (err: ErrorFromGoRestApi) => { console.log(err);this.router.navigate(['/404']); }
@@ -60,5 +61,13 @@ export class UserCardDetailsComponent {
     this.createPost = !this.createPost;
     console.log(refreshPosts);
     if(refreshPosts){this.getUserPosts();}
+  }
+
+  deleteUser(){
+    console.log("delete user: ", this.user);
+    this.goRestApi.deleteUserById(this.user.id).subscribe({
+      next: (data: any) => { this.router.navigate(['/lists/users']);},
+      error: (err: any) => { console.log(err); }
+    });
   }
 }
