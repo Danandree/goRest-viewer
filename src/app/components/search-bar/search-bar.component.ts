@@ -15,6 +15,7 @@ import { UserCardMinimalComponent } from '../user-card-minimal/user-card-minimal
 import { PostCardComponent } from '../post-card/post-card.component';
 
 import { GoRestAPIService } from '../../services/go-rest-api.service';
+import { debounceTime, distinctUntilChanged, switchMap, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar',
@@ -37,7 +38,7 @@ export class SearchBarComponent {
   typeofObjToSearch = '';
 
   optFields: string[] = [];
-  fieldSelected: string = '';
+
   controlField: FormGroup = new FormGroup({
     search: new FormControl(''),
     field: new FormControl('', [Validators.required]),
@@ -54,8 +55,8 @@ export class SearchBarComponent {
 
   resultList: any[] = [];
   page = 1;
-  objPerPage = 10;
-  queryToSearch: string = '';
+  objPerPage = 20;
+  resultCall$!: Observable<any>;
 
   constructor(private goRestApi: GoRestAPIService, private router: Router, private route: ActivatedRoute) { }
 
@@ -68,32 +69,24 @@ export class SearchBarComponent {
       if (this.typeofObjToSearch === 'posts') { this.optFields = ['title', 'body']; }
     });
     this.controlField.get('search')?.disable();
+
+    this.controlField.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(searchTerm => this.checkQuery(searchTerm)))
+      .subscribe(data => { this.resultList = data; });
   }
 
-  translationOfObj(field: string): string {
-    if (field == 'name' || field == 'email' || field == 'title' || field == 'body' || field == 'users' || field == 'posts') { return this.translatedFields[field]; }
-    return '';
-  }
-
-  searchQuery(event: any) {
-    if (this.controlField.valid) {
-      if (this.queryToSearch !== event.value) {
-        this.page = 1;
-        this.resultList = [];
-        this.queryToSearch = event.value;
-      }
-      this.searchObject();
+  checkQuery(searchTerm: any): Observable<any> {
+    if (searchTerm.search != '') {
+      // this.page = 1;
+      this.resultCall$ = this.goRestApi.searchObject(searchTerm.search, searchTerm.field, this.typeofObjToSearch, this.page, this.objPerPage);
+      return this.resultCall$;
     }
+    else { return new Observable<any>(observer => observer.next([])); }
   }
 
-  searchObject() {
-    this.goRestApi.searchObject(this.queryToSearch, this.fieldSelected, this.typeofObjToSearch, this.page, this.objPerPage).subscribe({
-      next: (data: any) => { this.resultList = this.resultList.concat(data); },
-      error: (err: any) => { console.log(err); }
-    });
-  }
-
-  resetResult() {
+  resetResult(): void {
     this.controlField.get('search')?.enable();
     this.controlField.get('search')?.setValue('');
   }
@@ -102,9 +95,16 @@ export class SearchBarComponent {
     this.resultList = this.resultList.filter(u => u.id != user.id);
   }
 
-  loadMore() {
+  loadMore(): void {
     this.page++;
-    this.searchObject();
+    this.resultCall$.subscribe({
+      next: (data) => { this.resultList = this.resultList.concat(data); },
+      error: (err) => { console.log(err); }
+    });
   }
 
+  translationOfObj(field: string): string {
+    if (field == 'name' || field == 'email' || field == 'title' || field == 'body' || field == 'users' || field == 'posts') { return this.translatedFields[field]; }
+    return '';
+  }
 }

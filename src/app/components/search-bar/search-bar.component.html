@@ -4,7 +4,7 @@
             <h2>Cerca {{translationOfObj(typeofObjToSearch)}} per: </h2>
             <mat-form-field class="type">
                 <mat-label>Campo</mat-label>
-                <mat-select [(value)]="fieldSelected" (valueChange)="resetResult()" formControlName="field">
+                <mat-select (valueChange)="resetResult()" formControlName="field">
                     @for(obj of optFields ;track $index){
                     <mat-option [value]="obj">{{(translationOfObj(obj))}}</mat-option>
                     }
@@ -13,7 +13,7 @@
         </div>
         <mat-form-field class="request">
             <mat-label>Cerca:</mat-label>
-            <input matInput (input)="searchQuery($event.target)" formControlName="search">
+            <input matInput formControlName="search">
             @if (controlField.get('search')?.value) {
             <button matSuffix mat-icon-button aria-label="Clear" (click)="resetResult()">
                 <mat-icon>close</mat-icon>
@@ -22,10 +22,15 @@
         </mat-form-field>
     </form>
 </mat-card>
-@if(resultList.length>0){
 <mat-card class="title-results">
-    <h2>{{translationOfObj(typeofObjToSearch)}} trovato: {{resultList.length}}</h2>
+    @if(resultList.length == 0 && controlField.get('search')?.value != '' && controlField.get('field')?.value != ''){
+    <h2>Nessun risultato trovato cercando "{{controlField.get('search')?.value}}" nel campo
+        "{{translationOfObj(controlField.get('field')?.value)}}"</h2>
+    }@else{
+    <h2>Risultati trovati: {{resultList.length}}</h2>
+    }
 </mat-card>
+@if(resultList.length>0){
 <div class="results">
     @if(typeofObjToSearch == 'users'){
     @for(user of resultList ;track $index){
