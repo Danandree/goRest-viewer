@@ -12,9 +12,8 @@ import { MessageDialogComponent } from '../components/message-dialog/message-dia
 })
 export class AuthService {
 
-  private urlForCheckToken: string = 'https://gorest.co.in/public/v2/users?page=1&per_page=1';
+  private urlForCheckToken: string = "https://gorest.co.in/public/v2/users?page=1&per_page=1";
 
-  // private _isLogged: boolean = localStorage.getItem('token') ? true : false;
   private _token: string | null = localStorage.getItem('token');
   get isLogged(): boolean { return localStorage.getItem('token') ? true : false; };
   get token(): string | null { return this._token; };
@@ -24,19 +23,15 @@ export class AuthService {
 
   checkToken(token: string | null): void {
     this._token = token;
-    this.http.get<User>("https://gorest.co.in/public/v2/users?page=1&per_page=1", { headers: { 'Authorization': 'Bearer ' + token } })
-      .subscribe({
+    this.http.get<User>(this.urlForCheckToken, { headers: { 'Authorization': 'Bearer ' + token } }).subscribe({
         next: (user: User) => {
           localStorage.setItem('token', token!);
-          // this._isLogged = true;
           this.router.navigate(['/lists/users']);
-          console.log(user, " token OK");
         },
         error: (err: ErrorFromGoRestApi) => {
-          console.log(err, "errore token");
           this.dialog.open(MessageDialogComponent, {
             data: { response: err, message: 'Token non valido' }
-          })
+          });
           this.router.navigate(['login']);
         }
       });
@@ -45,16 +40,13 @@ export class AuthService {
   tryAutoLogin(): void {
     if (localStorage.getItem('token')) {
       this.checkToken(localStorage.getItem('token'));
-      console.log("LOCAL STORAGE TOKEN: ", localStorage.getItem('token'));
     }
   }
 
   logout() {
     localStorage.removeItem('token');
-    // this._isLogged = false;
     this._token = null;
     this.router.navigate(['login']);
-    // this.open.dialog
     this.dialog.open(MessageDialogComponent, {
       data: { response: null, message: 'Logout effettuato con successo' }
     });

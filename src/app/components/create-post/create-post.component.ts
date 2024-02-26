@@ -1,18 +1,20 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { Post } from '../../interfaces/go-rest-apidata-structure';
-import { GoRestAPIService } from '../../services/go-rest-api.service';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { NgClass } from '@angular/common';
 
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
+import { Post } from '../../interfaces/go-rest-apidata-structure';
+import { GoRestAPIService } from '../../services/go-rest-api.service';
+
+
 
 
 @Component({

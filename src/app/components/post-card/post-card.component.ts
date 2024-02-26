@@ -1,17 +1,16 @@
 import { Component, Input } from '@angular/core';
-
-import { Post, Comment, User } from '../../interfaces/go-rest-apidata-structure';
+import { RouterLink, Router } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { GoRestAPIService } from '../../services/go-rest-api.service';
-
 import { CreateCommentComponent } from '../create-comment/create-comment.component';
 
-import { RouterLink, Router } from '@angular/router';
+import { Post, Comment, User } from '../../interfaces/go-rest-apidata-structure';
+
+import { GoRestAPIService } from '../../services/go-rest-api.service';
 
 @Component({
   selector: 'app-post-card',

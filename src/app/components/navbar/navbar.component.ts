@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
-
 import { NgClass } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
-// import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
-import { Router, RouterLink } from '@angular/router';
-
-// import { User, Post } from '../../interfaces/go-rest-apidata-structure';}
-import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({

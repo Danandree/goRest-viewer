@@ -1,24 +1,19 @@
 import { Component } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { GoRestAPIService } from '../../services/go-rest-api.service';
-import { Post, User } from '../../interfaces/go-rest-apidata-structure';
-
-import { UserCardMinimalComponent } from '../user-card-minimal/user-card-minimal.component';
-import { PostCardComponent } from '../post-card/post-card.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 
+import { UserCardMinimalComponent } from '../user-card-minimal/user-card-minimal.component';
+import { PostCardComponent } from '../post-card/post-card.component';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { Post, User } from '../../interfaces/go-rest-apidata-structure';
 
-
-
+import { GoRestAPIService } from '../../services/go-rest-api.service';
 
 @Component({
   selector: 'app-lists',

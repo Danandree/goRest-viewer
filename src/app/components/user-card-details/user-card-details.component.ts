@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
-
-import { NgClass } from '@angular/common';
-
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Post, ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
-import { GoRestAPIService } from '../../services/go-rest-api.service';
-import { PostCardComponent } from '../post-card/post-card.component';
+import { NgClass } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-
-import { CreatePostComponent } from '../create-post/create-post.component';
 import { MatDialog } from '@angular/material/dialog';
+
+import { PostCardComponent } from '../post-card/post-card.component';
+import { CreatePostComponent } from '../create-post/create-post.component';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
+
+import { User, Post, ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
+
+import { GoRestAPIService } from '../../services/go-rest-api.service';
+
 
 @Component({
   selector: 'app-user-card-details',

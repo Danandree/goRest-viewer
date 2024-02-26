@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-
-import { GoRestAPIService } from '../../services/go-rest-api.service';
+import { MatDialog } from '@angular/material/dialog';
 
 import { User } from '../../interfaces/go-rest-apidata-structure';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
+import { GoRestAPIService } from '../../services/go-rest-api.service';
 
 @Component({
   selector: 'app-create-user',
@@ -27,7 +25,6 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    // MatRadioModule,
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
@@ -63,16 +60,11 @@ export class CreateUserComponent {
   }
 
   createUser() {
-    // console.log(this.controlGroup.valid,"CREATE USER VALID");
     if (this.controlGroup.valid) {
-      // console.log("CREATE USER");
-      // console.log(this.controlGroup.value as User);
       this.user = this.controlGroup.value as User;
-      console.log(this.user, "THIS USER")
       this.goRestApi.createUser(this.user).subscribe({
         next: (data: User) => { console.log(data, "CREAZIONE OK"); this.router.navigate(['/users', data.id]); },
         error: (err: any) => {
-          console.log(err, "ERRORE CREAZIONE");
           this.dialog.open(MessageDialogComponent, {
             data: { response: err, message: 'Utente non creato' }
           })
@@ -80,6 +72,7 @@ export class CreateUserComponent {
       });
     }
   }
+
   clearForm() {
     this.controlGroup.reset();
   }
