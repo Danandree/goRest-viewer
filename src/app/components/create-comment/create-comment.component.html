@@ -23,10 +23,10 @@
     </mat-form-field>
 </form>
 <div class="buttons">
-    <button mat-stroked-button color="primary" (click)="createComment()" [disabled]="controlGroup.invalid">
+    <button mat-raised-button color="primary" (click)="createComment()" [disabled]="controlGroup.invalid">
         <mat-icon>add</mat-icon>Aggiungi
     </button>
-    <button mat-stroked-button color="warn" (click)="closeCreateComment(false)">
+    <button mat-raised-button color="warn" (click)="closeCreateComment(false)">
         <mat-icon>cancel</mat-icon>Annulla
     </button>
 </div>

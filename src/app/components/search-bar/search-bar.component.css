@@ -15,14 +15,16 @@ mat-card {
 }
 
 .first-row{
+    border: solid 2px red;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: center;
     align-items: center;
-    width:70%;
-    height: fit-content;
-    background-color: white;
+    width:100%;
+    /* height: fit-content; */
     padding-top: 5px;
+    background-color: rgb(185, 221, 255);
+
 }
 .request {
     width: 70%;

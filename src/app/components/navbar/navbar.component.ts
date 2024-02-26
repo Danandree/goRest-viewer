@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 
+import { NgClass } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 // import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 // import { User, Post } from '../../interfaces/go-rest-apidata-structure';}
 import { Observable } from 'rxjs';
@@ -22,18 +24,17 @@ import { AuthService } from '../../auth/auth.service';
     RouterLink,
     MatCardModule,
     // MatButtonToggleModule,
+    NgClass,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  isUserLogged(): boolean{
-    return this.authService.isLogged;
-  }
-  logout(): void {
-    this.authService.logout();
-  }
+  logout(): void { this.authService.logout(); }
+  isUserLogged(): boolean { return this.authService.isLogged; }
+  isUserListPage(): boolean { return this.router.url.includes('users') ? true : false; }
+  isPostListPage(): boolean { return this.router.url.includes('posts') ? true : false; }
 }

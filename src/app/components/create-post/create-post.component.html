@@ -29,11 +29,11 @@
     </form>
     <div class="buttons">
 
-        <button mat-stroked-button (click)="createPost()" [disabled]="controlGroup.invalid">
+        <button mat-raised-button (click)="createPost()" [disabled]="controlGroup.invalid">
             <mat-icon>add</mat-icon>Crea post
         </button>
-        <button mat-stroked-button color="warn" (click)="clearPost()">
-            <mat-icon>delete</mat-icon>Elimina
+        <button mat-raised-button color="warn" (click)="clearPost()">
+            <mat-icon>cancel</mat-icon>Cancella
         </button>
     </div>
 </mat-card>

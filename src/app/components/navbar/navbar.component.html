@@ -4,14 +4,17 @@
     </div>
     @if(isUserLogged()){
     <div class="buttons">
-        <button mat-raised-button [routerLink]="['/lists/users']">
-            <mat-icon>group</mat-icon>Utenti
+        <button mat-raised-button [routerLink]="['/lists/users']" [disabled]="isUserListPage()">
+            <mat-icon class="icon">group</mat-icon>
+            <p class="buttons-text">Utenti</p>
         </button>
-        <button mat-raised-button [routerLink]="['/lists/posts']">
-            <mat-icon>post_add</mat-icon>Posts
+        <button mat-raised-button [routerLink]="['/lists/posts']" [disabled]="isPostListPage()">
+            <mat-icon>post_add</mat-icon>
+            <p class="buttons-text">Posts</p>
         </button>
-        <button mat-raised-button color="warn" (click)="logout()">Logout
+        <button mat-raised-button color="warn" (click)="logout()">
             <mat-icon>logout</mat-icon>
+            <p class="buttons-text">Logout</p>
         </button>
     </div>
     <mat-divider></mat-divider>
