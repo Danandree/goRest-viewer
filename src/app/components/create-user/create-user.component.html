@@ -20,25 +20,21 @@
             <mat-form-field class=>
                 <mat-label>Sesso</mat-label>
                 <mat-select formControlName="gender">
-                    <!-- <mat-option>Clear</mat-option> -->
                     <mat-option value="male">Maschio</mat-option>
                     <mat-option value="female">femmina</mat-option>
                 </mat-select>
-                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
                 @if (controlGroup.get('gender')?.invalid) {
-                    <mat-error>{{getErrorMessage("gender")}}</mat-error>
+                <mat-error>{{getErrorMessage("gender")}}</mat-error>
                 }
             </mat-form-field>
             <mat-form-field class=>
                 <mat-label>Stato</mat-label>
                 <mat-select formControlName="status">
-                    <!-- <mat-option>Clear</mat-option> -->
                     <mat-option value="active">Attivo</mat-option>
                     <mat-option value="inactive">Inattivo</mat-option>
                 </mat-select>
-                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
                 @if (controlGroup.get('status')?.invalid) {
-                    <mat-error>{{getErrorMessage("status")}}</mat-error>
+                <mat-error>{{getErrorMessage("status")}}</mat-error>
                 }
             </mat-form-field>
         </div>

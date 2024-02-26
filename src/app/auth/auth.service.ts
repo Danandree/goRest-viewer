@@ -33,7 +33,7 @@ export class AuthService {
           console.log(user, " token OK");
         },
         error: (err: ErrorFromGoRestApi) => {
-          // console.log(err, "errore token");
+          console.log(err, "errore token");
           this.dialog.open(MessageDialogComponent, {
             data: { response: err, message: 'Token non valido' }
           })
@@ -55,5 +55,8 @@ export class AuthService {
     this._token = null;
     this.router.navigate(['login']);
     // this.open.dialog
+    this.dialog.open(MessageDialogComponent, {
+      data: { response: null, message: 'Logout effettuato con successo' }
+    });
   }
 }

@@ -39,7 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class ListsComponent {
 
   typeOfObj: string = '';
-  typeOfObjName = { users: "Utenti", posts: "Post" }
+  typeOfObjName = { users: "Utenti", posts: "Posts" }
 
   userList: User[] = [];
   postList: Post[] = [];
@@ -87,7 +87,7 @@ export class ListsComponent {
     if (this.typeOfObj == 'users') { this.userPage++; this.getUsersList(); }
     else if (this.typeOfObj == 'posts') { this.postPage++; this.getPostsList(); }
   }
-  openSearchBar() {
+  goToSearch() {
     if (this.typeOfObj == 'users') { this.router.navigate(['/search/users']); }
     if (this.typeOfObj == 'posts') { this.router.navigate(['/search/posts']); }
   }

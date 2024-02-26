@@ -1,8 +1,7 @@
-<mat-card>
-    <h1>Crea un nuovo post</h1>
+<mat-card [ngClass]="{'user-detail-size': userId}">
+    <h2>Crea un nuovo post</h2>
     <form [formGroup]="controlGroup" class="create-post-card">
         @if(!userId){
-
             <mat-form-field>
                 <mat-label>User id</mat-label>
                 <input matInput placeholder="84529447" formControlName="user_id" required>
@@ -28,7 +27,6 @@
         </mat-form-field>
     </form>
     <div class="buttons">
-
         <button mat-raised-button (click)="createPost()" [disabled]="controlGroup.invalid">
             <mat-icon>add</mat-icon>Crea post
         </button>

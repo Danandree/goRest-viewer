@@ -43,7 +43,7 @@ export class CreateCommentComponent {
         case "email":
           return "Inserire la mail";
         case "body":
-          return "Inserire il body";
+          return "Inserire il commento";
       }
     }
     return "La mail deve essere valida";

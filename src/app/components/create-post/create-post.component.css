@@ -1,18 +1,3 @@
-.create-post-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* margin: auto; */
-    /* background-color: rgb(185, 221, 255); */
-
-
-}
-
-h1 {
-    text-align: center;
-    /* margin-top: 10px; */
-}
-
 mat-card {
     width: 95%;
     margin: auto;
@@ -20,6 +5,19 @@ mat-card {
     margin-top: 10px;
     background-color: rgb(185, 221, 255);
 
+}
+.create-post-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+}
+
+.user-detail-size {
+    width: 100%;;
 }
 
 .buttons {

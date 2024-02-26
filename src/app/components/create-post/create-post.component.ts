@@ -10,6 +10,7 @@ import { Post } from '../../interfaces/go-rest-apidata-structure';
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { NgClass } from '@angular/common';
 
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
@@ -25,6 +26,7 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    NgClass,
   ],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
@@ -66,6 +68,7 @@ export class CreatePostComponent {
       this.post.body = this.controlGroup.value.body!;
       this.post.title = this.controlGroup.value.title!;
       this.post.user_id = +this.controlGroup.value.user_id!;
+      // this.post = this.controlGroup.value as Post;
       this.goRestApi.createPost(this.post).subscribe({
         next: (data: any) => {
           console.log(data);
@@ -76,19 +79,17 @@ export class CreatePostComponent {
           }
         },
         error: (err: any) => {
-          console.log(err);
           this.dialog.open(MessageDialogComponent, {
             data: { response: err, message: 'Post non creato, errore inaspettato' }
-          })
+          });
         },
       });
-    } else { console.log("invalid form"); }
+    } 
   }
 
   clearPost() {
     this.controlGroup.reset();
     if (this.userId) { this.closeCreatePostComponent.emit(true); }
-    // if (this.router.url.includes('posts/new')) { this.router.navigate(['/lists/posts']); }
   }
 
 }

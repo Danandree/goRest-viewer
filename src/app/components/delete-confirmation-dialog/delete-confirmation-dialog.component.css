@@ -4,7 +4,13 @@
     width:100%;
     max-width: 500px;
     text-align: center;
+    padding: 5px;
 }
 p{
     border: solid 2px red;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
 }

@@ -1,6 +1,8 @@
 <mat-card class="delete-confirmation-dialog">
     <h2><strong>Conferma</strong></h2>
-    <p>Si è sicuri di voler eliminare l'utente <strong>{{data.user.name}}</strong> ?</p>
-    <button mat-raised-button color="primary" [mat-dialog-close]="false">Annulla</button>
-    <button mat-raised-button color="warn" [mat-dialog-close]="true">Elimina</button>
+    <h3>Si è sicuri di voler eliminare l'utente <strong>{{data.user.name}}</strong> ?</h3>
+    <div class="buttons">
+        <button mat-raised-button color="primary" [mat-dialog-close]="false">Annulla</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">Elimina</button>
+    </div>
 </mat-card>

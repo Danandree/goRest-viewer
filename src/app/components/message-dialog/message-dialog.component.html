@@ -1,14 +1,14 @@
 <mat-card class="message-dialog">
     @if(data.response){
     <h2>Ops c'è stato un errore!</h2>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            Dettagli:
-        </mat-expansion-panel-header>
-        <h2>Errore: {{this.data.response.status}}</h2>
-        <!-- <h3>Messaggio:</h3> -->
-        <h3>Messaggio: {{this.data.response.error[0].field}} {{this.data.response.error[0].message}}</h3>
-    </mat-expansion-panel>
+    <h3>Errore: {{data.response.status}}</h3>
+    <!-- <h3>Messaggio:</h3> -->
+    @if(data.response.status == 401){
+    <h3>{{errorToMessage[data.response.status]}}</h3>
+    }@else{
+    <h3>Messaggio: {{data.response.error[0].field}} {{data.response.error[0].message}}</h3>
+
+    }
     }@else {
     <h2>{{this.data.message}}</h2>
     }

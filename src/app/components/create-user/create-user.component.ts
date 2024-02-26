@@ -27,7 +27,7 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatRadioModule,
+    // MatRadioModule,
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
@@ -42,7 +42,6 @@ export class CreateUserComponent {
     gender: new FormControl('', [Validators.required]),
     status: new FormControl('', [Validators.required])
   })
-  gender: string = '';
   user = new User;
 
   constructor(private goRestApi: GoRestAPIService, private router: Router, private dialog: MatDialog) { }
@@ -63,25 +62,25 @@ export class CreateUserComponent {
     return "ERRORE";
   }
 
-  createUser(){
+  createUser() {
     // console.log(this.controlGroup.valid,"CREATE USER VALID");
-    if(this.controlGroup.valid){
+    if (this.controlGroup.valid) {
       // console.log("CREATE USER");
       // console.log(this.controlGroup.value as User);
       this.user = this.controlGroup.value as User;
       console.log(this.user, "THIS USER")
       this.goRestApi.createUser(this.user).subscribe({
-        next: (data: User) => { console.log(data,"CREAZIONE OK");this.router.navigate(['/users',data.id]); },
-        error: (err: any) => { 
-          console.log(err,"ERRORE CREAZIONE"); 
+        next: (data: User) => { console.log(data, "CREAZIONE OK"); this.router.navigate(['/users', data.id]); },
+        error: (err: any) => {
+          console.log(err, "ERRORE CREAZIONE");
           this.dialog.open(MessageDialogComponent, {
             data: { response: err, message: 'Utente non creato' }
           })
         }
-       });
-    }else{console.log("NON VALIDO");}
+      });
+    }
   }
-  clearForm(){
+  clearForm() {
     this.controlGroup.reset();
   }
 }
