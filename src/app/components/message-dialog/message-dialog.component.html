@@ -1,0 +1,12 @@
+<mat-card class="message-dialog">
+    @if(data.response){
+        <h2>Errore: {{this.data.response.status}}</h2>
+        <h3>Messaggio:</h3>
+        <p>{{this.data.response.error[0].field}} {{this.data.response.error[0].message}}</p>
+    }@else {
+        <h2>{{this.data.message}}</h2>
+    }
+        <button mat-raised-button color="primary" mat-dialog-close>
+            Chiudi
+        </button>
+</mat-card>

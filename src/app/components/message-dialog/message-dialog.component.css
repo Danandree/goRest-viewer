@@ -1,0 +1,9 @@
+.message-dialog{
+    text-align: center;
+    border:red 2px solid;
+    width:100%;
+    max-width: 500px;
+    padding: 10px;
+    background-color: rgb(159, 209, 255);
+
+}

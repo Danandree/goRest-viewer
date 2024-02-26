@@ -14,6 +14,8 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
 
 import { User } from '../../interfaces/go-rest-apidata-structure';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 
 @Component({
@@ -43,7 +45,7 @@ export class CreateUserComponent {
   gender: string = '';
   user = new User;
 
-  constructor(private goRestApi: GoRestAPIService, private router: Router) { }
+  constructor(private goRestApi: GoRestAPIService, private router: Router, private dialog: MatDialog) { }
   getErrorMessage(form: string) {
     if (this.controlGroup.get(form)?.hasError('required')) {
       switch (form) {
@@ -70,7 +72,12 @@ export class CreateUserComponent {
       console.log(this.user, "THIS USER")
       this.goRestApi.createUser(this.user).subscribe({
         next: (data: User) => { console.log(data,"CREAZIONE OK");this.router.navigate(['/users',data.id]); },
-        error: (err: any) => { console.log(err,"ERRORE CREAZIONE"); }
+        error: (err: any) => { 
+          console.log(err,"ERRORE CREAZIONE"); 
+          this.dialog.open(MessageDialogComponent, {
+            data: { response: err, message: 'Utente non creato' }
+          })
+        }
        });
     }else{console.log("NON VALIDO");}
   }

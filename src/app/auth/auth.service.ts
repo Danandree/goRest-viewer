@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { User, ErrorFromGoRestApi } from '../interfaces/go-rest-apidata-structure';
 import { Observable } from 'rxjs';
 import { GoRestAPIService } from '../services/go-rest-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageDialogComponent } from '../components/message-dialog/message-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AuthService {
   get isLogged(): boolean { return localStorage.getItem('token') ? true : false; };
   get token(): string | null { return this._token; };
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private dialog: MatDialog) { }
 
 
   checkToken(token: string | null): void {
@@ -31,7 +33,10 @@ export class AuthService {
           console.log(user, " token OK");
         },
         error: (err: ErrorFromGoRestApi) => {
-          console.log(err, "errore token");
+          // console.log(err, "errore token");
+          this.dialog.open(MessageDialogComponent, {
+            data: { response: err, message: 'Token non valido' }
+          })
           this.router.navigate(['login']);
         }
       });

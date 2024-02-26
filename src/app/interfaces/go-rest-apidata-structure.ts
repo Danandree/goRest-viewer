@@ -26,7 +26,7 @@ export interface CommentInt {
 
 export interface ErrorFromGoRestApi {
     [key: string]: number | string | object | boolean;
-    error: { message: string },
+    error: [{ message: string, field: string }],
     headers: object,
     message: string,
     name: string,

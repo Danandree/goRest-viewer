@@ -35,6 +35,6 @@ export class NavbarComponent {
 
   logout(): void { this.authService.logout(); }
   isUserLogged(): boolean { return this.authService.isLogged; }
-  isUserListPage(): boolean { return this.router.url.includes('users') ? true : false; }
-  isPostListPage(): boolean { return this.router.url.includes('posts') ? true : false; }
+  isUserListPage(): boolean { return this.router.url.includes('lists/users') ? true : false; }
+  isPostListPage(): boolean { return this.router.url.includes('lists/posts') ? true : false; }
 }
