@@ -32,7 +32,7 @@ export class PostCardComponent {
   user!: User;
   commentsList: Comment[] = [];
 
-  addCommentComponent = false;
+  isCommentComponentOpen = false;
 
   constructor(private goRestApi: GoRestAPIService, private router: Router) { }
   ngOnInit() {
@@ -41,6 +41,7 @@ export class PostCardComponent {
       this.getUserById(this.post.user_id);
     }
   }
+  
   getComments() {
     this.goRestApi.getCommentFromPostId(this.post.id).subscribe({
       next: (data: any) => { this.commentsList = data; },
@@ -55,9 +56,9 @@ export class PostCardComponent {
     })
   }
 
-  addCommentToggle(refreshComments: boolean) {
-    this.addCommentComponent = !this.addCommentComponent;
-    if (refreshComments) { this.getComments(); } //SPOSTARE
+  changeCommentComponentStatus(refreshComments: boolean) {
+    this.isCommentComponentOpen = !this.isCommentComponentOpen;
+    if (refreshComments) { this.getComments(); }
   }
 
   isUserPage() {

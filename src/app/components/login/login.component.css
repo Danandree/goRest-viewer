@@ -8,19 +8,22 @@
     text-align: justify;
     padding: 10px;
     background-color: rgb(185, 221, 255);
-
 }
+
 button{
     max-width: 200px;
     margin: auto;
 }
+
 h3{
     text-align: center;
 }
+
 p{
     padding: 10px;
     text-justify: inter-word;
 }
+
 mat-form-field{
     margin-top: 10px;
 }

@@ -18,9 +18,5 @@ import { User } from '../../interfaces/go-rest-apidata-structure';
 })
 export class DeleteConfirmationDialogComponent {
  
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: {user: User}){}
-
-  deleteUser(){console.log("DELETE USER");}
-  closeDialog(){console.log("ANNULLO");}
 }

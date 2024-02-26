@@ -21,5 +21,4 @@ export class MessageDialogComponent {
   }
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: {response: ErrorFromGoRestApi, message: string}){}
-
 }

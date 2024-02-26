@@ -1,35 +1,20 @@
 .navbar-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* padding-bottom: 15px; */
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
     width: 95%;
     margin: auto;
     margin-top: 10px;
     background-color: rgb(127, 192, 252);
-
-
-    /* position: fixed;
-    width:95%;
-    z-index: 10;
-    background-color: aquamarine;
-    margin: auto; */
 }
 
 .buttons {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* border: solid 2px red; */
     width: 95%;
     margin: auto;
-    /* max-width: 1000px; */
-    /* position: sticky; */
     margin-bottom: 10px;
-
 }
 
 .title {
@@ -37,39 +22,25 @@
     text-align: center;
 }
 
-button {
-    /* width: 25%; */
+/* button {
     background-color: rgb(185, 221, 255);
     display: flex;
     justify-content: center;
     align-items: center;
     border: red 2px solid;
     margin: auto;
-}
+} */
+
 .buttons-text{
     margin:auto;
 }
 
-.spacer {
-    display: flex;
-    /* border: solid 2px red; */
-    width: fit-content;
-    /* height: 50px; */
-    /* flex: 1 1 auto; */
-    max-width: 300px;
-    justify-content: end;
-    align-items: end;
-
-}
 .selected{
     border: 3px solid green;
 }
+
 @media screen and (max-width: 400px) {
     .buttons-text{
         display: none;
-    }
-    button{
-        padding-left: 10px;
-        border: solid 2px red;
     }
 }

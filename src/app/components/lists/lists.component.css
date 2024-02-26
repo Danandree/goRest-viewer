@@ -3,64 +3,6 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    /* margin-top: 10px; */
-    /* gap:300px; */
-}
-
-.search {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    /* border: solid red 2px; */
-    margin-top: 10px;
-    gap: 10px;
-}
-
-.request {
-    width: 70%;
-    height: fit-content;
-    /* height: 50%; */
-    /* border: solid red 2px; */
-}
-
-.type {
-    /* border: solid red 2px; */
-    width: 20%;
-}
-
-mat-form-field {
-    width: 100%;
-}
-
-.add-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    /* z-index: 100; */
-}
-
-.absolute-button {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    /* z-index: 1; */
-    /* height: 200px; */
-    /* width: 70px; */
-    background-color: black;
-    padding: 7px;
-    gap: 6px;
-    border-radius: 40px 40px 40px 40px;
-}
-
-.load-more-button {
-    /* padding: 10px; */
-    margin: auto;
-    margin: 10px auto;
-    /* border: red solid 2px; */
 }
 
 .title {
@@ -71,11 +13,20 @@ mat-form-field {
     padding: 5px;
     margin: auto;
     margin-top: 10px;
-    /* border: solid 2px red; */
+}
+
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 
 h2 {
-    /* border: 2px solid red; */
     margin-top: 5px;
     margin: auto;
+}
+
+.load-more-button {
+    margin: auto;
+    margin: 10px auto;
 }

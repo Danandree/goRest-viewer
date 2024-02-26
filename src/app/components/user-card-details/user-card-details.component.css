@@ -1,31 +1,22 @@
 .user-details-container {
     width: 95%;
-    /* padding: 15px; */
-    /* border: solid red 2px; */
     margin: 10px auto;
 }
 
 mat-card {
     padding: 10px;
     background-color: rgb(185, 221, 255);
-
 }
 
 .buttons {
     display: flex;
     justify-content: end;
-    /* margin: auto; */
     gap: 10px;
 }
 
 .data {
     display: flex;
     justify-content: space-around;
-}
-
-.title {
-    display: flex;
-    justify-content: space-between;
 }
 
 .user-status {
@@ -37,18 +28,16 @@ mat-card {
     aspect-ratio: 1 / 1;
     border-radius: 0 3px 0 100%;
     background-color: grey;
-    /* border: solid black 2px; */
 }
+
 .red{
     background-color: red;
 }
+
 .green{
     background-color: green;
 }
-h2{
-    text-align: center;
-    margin-top:10px;
-}
+
 mat-spinner {
     margin: auto;
 }
@@ -56,6 +45,7 @@ mat-spinner {
     width: 75%;
     margin:auto;
     margin-top:5px;
+    text-align: center;
 }
 
 @media screen and (min-width: 700px) {
@@ -66,18 +56,8 @@ mat-spinner {
     }
 
     .buttons {
-        /* flex-direction: column; */
         margin: 0;
         gap: 20px;
     }
 
 }
-
-.red-border{
-    border: solid red 4px;
-}
-
-.green-border{
-    border: solid green 4px;
-}
-

@@ -20,9 +20,9 @@
     <app-create-post [userId]="user.id" (closeCreatePostComponent)="openCreatePost($event)"></app-create-post>
     }
     @if(postsList && postsList.length > 0){
-        <mat-card class="subTitle">
-            <h2>Post dell'utente: {{postsList.length}}</h2>
-        </mat-card>
+    <mat-card class="subTitle">
+        <h2>Post dell'utente: {{postsList.length}}</h2>
+    </mat-card>
     @for(post of postsList; track post){
     <app-post-card [post]="post"></app-post-card>
     }

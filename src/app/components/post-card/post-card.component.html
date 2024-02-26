@@ -14,16 +14,15 @@
             Commenti: {{commentsList.length}}
         </mat-expansion-panel-header>
         @for(comment of commentsList; track $index){
-        <!-- <app-comment-card [comment]="comment"></app-comment-card> -->
         <p><strong>{{comment.name}}: </strong>{{comment.body}}</p>
         }
-        @if(addCommentComponent){
+        @if(isCommentComponentOpen){
         <app-create-comment [postId]="post.id"
-            (closeCreateCommentComponent)="addCommentToggle($event)"></app-create-comment>
+            (closeCreateCommentComponent)="changeCommentComponentStatus($event)"></app-create-comment>
         }@else{
 
         <div class="add-comment-button">
-            <button mat-raised-button (click)="addCommentToggle(false)">
+            <button mat-raised-button (click)="changeCommentComponentStatus(false)">
                 <mat-icon>add</mat-icon>Aggiungi commento
             </button>
         </div>

@@ -25,6 +25,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   hide = true;
   private _tokenUrl: string = 'https://gorest.co.in/my-account/access-tokens'
   tokenControl: FormControl = new FormControl('', [Validators.required]);
@@ -40,7 +41,6 @@ export class LoginComponent {
   }
 
   checkToken(): void {
-    console.log(this.tokenControl.value,"TOKEN CONTROL VALUE");
     this.authService.checkToken(this.tokenControl.value);
   }
 }

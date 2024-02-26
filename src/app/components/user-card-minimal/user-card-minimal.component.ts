@@ -7,7 +7,6 @@ import { User } from '../../interfaces/go-rest-apidata-structure';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 
@@ -27,7 +26,6 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
     MatIconModule,
     MatButtonModule,
     NgClass,
-    MatDividerModule,
   ],
   templateUrl: './user-card-minimal.component.html',
   styleUrl: './user-card-minimal.component.css'
@@ -38,20 +36,10 @@ export class UserCardMinimalComponent {
 
   constructor(private goRestApi: GoRestAPIService, public dialog: MatDialog) { }
 
-  // deleteUser(event: Event): void {
-  //   event.stopPropagation();
-  //   console.log("delete user: ", this.user);
-  //   this.goRestApi.deleteUserById(this.user.id).subscribe({
-  //     next: (data: any) => { console.log(data, "EMIT EVENT"); console.log(this.user); this.deleteUserEvent.emit(this.user); },
-  //     error: (err: any) => { console.log(err); }
-  //   });
-  // }
-
   openDeleteUserDialog(event: Event): void {
     event.stopPropagation();
     this.dialog.open(DeleteConfirmationDialogComponent, { data: { user: this.user } }).afterClosed().subscribe({
       next: (data: boolean) => {
-        // console.log(data, "DELETE CONFIRMATION DIALOG");
         if (data) {
           this.goRestApi.deleteUserById(this.user.id).subscribe({
             next: (data: any) => { 
