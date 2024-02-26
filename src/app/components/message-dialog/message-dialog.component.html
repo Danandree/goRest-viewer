@@ -1,12 +1,18 @@
 <mat-card class="message-dialog">
     @if(data.response){
+    <h2>Ops c'è stato un errore!</h2>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Dettagli:
+        </mat-expansion-panel-header>
         <h2>Errore: {{this.data.response.status}}</h2>
-        <h3>Messaggio:</h3>
-        <p>{{this.data.response.error[0].field}} {{this.data.response.error[0].message}}</p>
+        <!-- <h3>Messaggio:</h3> -->
+        <h3>Messaggio: {{this.data.response.error[0].field}} {{this.data.response.error[0].message}}</h3>
+    </mat-expansion-panel>
     }@else {
-        <h2>{{this.data.message}}</h2>
+    <h2>{{this.data.message}}</h2>
     }
-        <button mat-raised-button color="primary" mat-dialog-close>
-            Chiudi
-        </button>
+    <button mat-raised-button color="primary" mat-dialog-close>
+        Chiudi
+    </button>
 </mat-card>

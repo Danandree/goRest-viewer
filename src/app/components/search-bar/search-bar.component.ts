@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 
 import { GoRestAPIService } from '../../services/go-rest-api.service';
+
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { UserCardMinimalComponent } from '../user-card-minimal/user-card-minimal.component';
+import { PostCardComponent } from '../post-card/post-card.component';
+
+import { User, Post } from '../../interfaces/go-rest-apidata-structure'
 
 
 @Component({
@@ -23,14 +30,17 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    PostCardComponent,
+    UserCardMinimalComponent,
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
-  @Input() typeofObjToSearch!: string;
-  @Output() reportSearchList = new EventEmitter();
-  @Output() closeBar = new EventEmitter();
+  typeofObjToSearch = '';
+  // @Output() reportSearchList = new EventEmitter();
+  // @Output() closeBar = new EventEmitter();
+
   optFields: string[] = [];
   fieldSelected: string = '';
   controlField: FormGroup = new FormGroup({
@@ -47,13 +57,24 @@ export class SearchBarComponent {
   }
 
   resultList: any[] = [];
+  page = 1;
+  objPerPage = 10;
+  queryToSearch: string = '';
 
-  constructor(private goRestApi: GoRestAPIService) { }
+  constructor(private goRestApi: GoRestAPIService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    if (this.typeofObjToSearch === 'users') { this.optFields = ['name', 'email']; }
-    if (this.typeofObjToSearch === 'posts') { this.optFields = ['title', 'body']; }
-    console.log(this.controlField.get('field')?.value, "VALUE")
+    this.route.paramMap.subscribe(params => {
+      if (params.get('type') === 'users') { this.typeofObjToSearch = 'users'; }
+      else if (params.get('type') === 'posts') { this.typeofObjToSearch = 'posts'; }
+      else { this.router.navigate(['/404']); }
+      // console.log(params.get('type'), "PARAMS");
+      if (this.typeofObjToSearch === 'users') { this.optFields = ['name', 'email']; }
+      if (this.typeofObjToSearch === 'posts') { this.optFields = ['title', 'body']; }
+    });
+    // if (this.router.url.includes('users')) { this.typeofObjToSearch = 'users'; }
+    // if (this.router.url.includes('posts')) { this.typeofObjToSearch = 'posts'; }
+    // console.log(this.controlField.get('field')?.value, "VALUE")
     this.controlField.get('search')?.disable();
   }
 
@@ -66,18 +87,36 @@ export class SearchBarComponent {
   searchQuery(event: any) {
     console.log(event.value);
     if (this.controlField.valid) {
-      this.goRestApi.searchObj(event.value, this.fieldSelected, this.typeofObjToSearch).subscribe({
-        next: (data: any) => { console.log(data); this.reportSearchList.emit({ data: data, obj: this.typeofObjToSearch }); },
-        error: (err: any) => { console.log(err); }
-      });
+      if (this.queryToSearch !== event.value) {
+        this.page = 1;
+        this.resultList = [];
+        this.queryToSearch = event.value;
+      }
+      this.searchObject();
     }
   }
+
+  searchObject() {
+    this.goRestApi.searchObjPage(this.queryToSearch, this.fieldSelected, this.typeofObjToSearch, this.page, this.objPerPage).subscribe({ // <--
+      next: (data: any) => {
+        console.log(data);
+        this.resultList = this.resultList.concat(data);
+      },
+      error: (err: any) => { console.log(err); }
+    });
+  }
+
   resetResult() {
     this.controlField.get('search')?.enable();
-    this.reportSearchList.emit({ data: [], obj: this.typeofObjToSearch });
     this.controlField.get('search')?.setValue('');
   }
-  closeSearchBar(){
-    this.closeBar.emit();
+
+  loadMore() {
+    this.page++;
+    this.searchObject();
+  }
+  deleteUser(user: User): void {
+    // console.log(user);
+    this.resultList = this.resultList.filter(u => u.id != user.id);
   }
 }

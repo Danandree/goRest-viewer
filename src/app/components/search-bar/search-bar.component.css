@@ -1,5 +1,7 @@
 mat-card {
     background-color: rgb(185, 221, 255);
+    width: 95%;
+    margin: auto;
 }
 .search {
     display: flex;
@@ -43,4 +45,9 @@ mat-card{
     position: absolute;
     bottom:10px;
     right: 10px;
+}
+
+.results{
+    width: 95%;
+    margin: auto;
 }

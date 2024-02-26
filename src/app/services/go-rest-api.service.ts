@@ -55,15 +55,22 @@ export class GoRestAPIService {
     return this.http.delete(`${this.mainUrl}users/${id}`, { headers: this._tokenHeaders });
   }
 
-  searchUsers(query: string, field: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.mainUrl}users?${field}=${query}`, { headers: this._tokenHeaders });
+  // searchUsers(query: string, field: string): Observable<User[]> {
+  //   return this.http.get<User[]>(`${this.mainUrl}users?${field}=${query}`, { headers: this._tokenHeaders });
+  // }
+
+  searchUsersPage(query: string, field: string, page: number, perPage: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.mainUrl}users?page=${page}&per_page=${perPage}&${field}=${query}`, { headers: this._tokenHeaders });
   }
 
   searchPosts(query: string, field: string): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.mainUrl}posts?${field}=${query}`, { headers: this._tokenHeaders });
   }
 
-  searchObj(query: string, field: string, type: string): Observable<Post[] | User[]> {
-    return this.http.get<Post[] | User[]>(`${this.mainUrl}${type}?${field}=${query}`, { headers: this._tokenHeaders });
+  // searchObj(query: string, field: string, type: string): Observable<Post[] | User[]> {
+  //   return this.http.get<Post[] | User[]>(`${this.mainUrl}${type}?${field}=${query}`, { headers: this._tokenHeaders });
+  // }
+  searchObjPage(query: string, field: string, type: string, page: number, perPage: number): Observable<Post[] | User[]> {
+    return this.http.get<Post[] | User[]>(`${this.mainUrl}${type}?${field}=${query}&page=${page}&per_page=${perPage}`, { headers: this._tokenHeaders });
   }
 }

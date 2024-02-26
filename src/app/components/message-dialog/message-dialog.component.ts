@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 @Component({
   selector: 'app-message-dialog',
   standalone: true,
@@ -11,6 +11,7 @@ import { ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
     MatCardModule,
     MatButtonModule,
     MatDialogClose,
+    MatExpansionModule,
   ],
   templateUrl: './message-dialog.component.html',
   styleUrl: './message-dialog.component.css'

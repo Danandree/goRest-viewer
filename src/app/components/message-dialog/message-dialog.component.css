@@ -3,7 +3,19 @@
     border:red 2px solid;
     width:100%;
     max-width: 500px;
-    padding: 10px;
-    background-color: rgb(159, 209, 255);
+    /* padding: 10px; */
+    background-color: rgb(185, 221, 255);
 
+}
+mat-expansion-panel{
+    width: 100%;
+    background-color: rgb(159, 209, 255);
+}
+h2{
+    padding-top: 10px;
+}
+
+button{
+    margin: 10px auto;
+    width: 200px;
 }

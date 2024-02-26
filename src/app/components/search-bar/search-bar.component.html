@@ -1,7 +1,7 @@
 <mat-card>
     <form class="search" [formGroup]="controlField">
         <div class="first-row">
-            <h2> Cerca {{translationOfObj(typeofObjToSearch)}} per: </h2>
+            <h2>Cerca {{translationOfObj(typeofObjToSearch)}} per: </h2>
             <mat-form-field class="type">
                 <mat-label>Campo</mat-label>
                 <mat-select [(value)]="fieldSelected" (valueChange)="resetResult()" formControlName="field">
@@ -22,3 +22,23 @@
         </mat-form-field>
     </form>
 </mat-card>
+@if(resultList.length>0){
+<mat-card>
+    <h2>{{translationOfObj(typeofObjToSearch)}} trovato: {{resultList.length}}</h2>
+</mat-card>
+<div class="results">
+    @if(typeofObjToSearch == 'users'){
+    @for(user of resultList ;track $index){
+    <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
+    }
+    }
+    @if(typeofObjToSearch == 'posts'){
+    @for(post of resultList ;track $index){
+    <app-post-card [post]="post"></app-post-card>
+    }
+    }
+</div>
+<button (click)="loadMore()">
+    <mat-icon>add</mat-icon>Carica altri risultati
+</button>
+}

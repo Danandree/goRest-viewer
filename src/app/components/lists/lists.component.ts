@@ -16,9 +16,9 @@ import { MatCardModule } from '@angular/material/card';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+
+
 
 @Component({
   selector: 'app-lists',
@@ -31,7 +31,6 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    SearchBarComponent,
     MatCardModule,
   ],
   templateUrl: './lists.component.html',
@@ -40,11 +39,10 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 export class ListsComponent {
 
   typeOfObj: string = '';
+  typeOfObjName = { users: "Utenti", posts: "Post" }
 
   userList: User[] = [];
   postList: Post[] = [];
-
-  searchBar = false;
 
   pageSize = 10;
   userPage = 1;
@@ -53,13 +51,11 @@ export class ListsComponent {
   constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService, private router: Router) { }
 
   ngOnInit() {
-
     this.route.paramMap.subscribe(params => {
-      if (this.searchBar) {this.searchBar = !this.searchBar}
-        this.typeOfObj = params.get('type')!;
-        if (this.typeOfObj != 'users' && this.typeOfObj != 'posts') { this.router.navigate(['/404']); }
-        if (this.typeOfObj == 'users') { this.userPage = 1; this.userList = []; this.getUsersList(); }
-        else if (this.typeOfObj == 'posts') { this.postPage = 1; this.postList = []; this.getPostsList(); }
+      this.typeOfObj = params.get('type')!;
+      if (this.typeOfObj == 'users') { this.userPage = 1; this.userList = []; this.getUsersList(); }
+      else if (this.typeOfObj == 'posts') { this.postPage = 1; this.postList = []; this.getPostsList(); }
+      else { this.router.navigate(['/404']); }
     });
 
   }
@@ -87,30 +83,12 @@ export class ListsComponent {
     if (this.typeOfObj == 'posts') { this.router.navigate(['/posts/new']); }
   }
 
-
-  openSearchBar() {
-    this.searchBar = !this.searchBar;
-    if (!this.searchBar) {
-      if (this.typeOfObj == 'users') {
-        this.userList = [];
-        this.userPage = 1;
-        this.getUsersList();
-      }
-      if (this.typeOfObj == 'posts') {
-        this.postList = [];
-        this.postPage = 1;
-        this.getPostsList();
-      }
-    } else { this.userList = []; this.postList = []; }
-  }
-
   loadMore() {
     if (this.typeOfObj == 'users') { this.userPage++; this.getUsersList(); }
     else if (this.typeOfObj == 'posts') { this.postPage++; this.getPostsList(); }
   }
-
-  updateList(event: any) {
-    if (event.obj == 'users') { this.userList = event.data; }
-    if (event.obj == 'posts') { this.postList = event.data; }
+  openSearchBar() {
+    if (this.typeOfObj == 'users') { this.router.navigate(['/search/users']); }
+    if (this.typeOfObj == 'posts') { this.router.navigate(['/search/posts']); }
   }
 }

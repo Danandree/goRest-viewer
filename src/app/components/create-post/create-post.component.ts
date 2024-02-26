@@ -9,6 +9,9 @@ import { MatCardModule } from '@angular/material/card';
 import { Post } from '../../interfaces/go-rest-apidata-structure';
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
+import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 
 @Component({
@@ -36,7 +39,7 @@ export class CreatePostComponent {
   @Input() userId?: number;
   @Output() closeCreatePostComponent = new EventEmitter();
 
-  constructor(private goRestApi: GoRestAPIService, private router: Router) { }
+  constructor(private goRestApi: GoRestAPIService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.userId) {
@@ -68,11 +71,16 @@ export class CreatePostComponent {
           console.log(data);
           if (this.userId) {
             this.closeCreatePostComponent.emit(true);
-          }else{
+          } else {
             this.router.navigate(['/lists/posts']);
           }
         },
-        error: (err: any) => { console.log(err); },
+        error: (err: any) => {
+          console.log(err);
+          this.dialog.open(MessageDialogComponent, {
+            data: { response: err, message: 'Post non creato, errore inaspettato' }
+          })
+        },
       });
     } else { console.log("invalid form"); }
   }
@@ -80,6 +88,7 @@ export class CreatePostComponent {
   clearPost() {
     this.controlGroup.reset();
     if (this.userId) { this.closeCreatePostComponent.emit(true); }
+    // if (this.router.url.includes('posts/new')) { this.router.navigate(['/lists/posts']); }
   }
 
 }

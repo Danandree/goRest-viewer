@@ -11,9 +11,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { CreatePostComponent } from '../create-post/create-post.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-user-card-details',
@@ -38,14 +41,14 @@ export class UserCardDetailsComponent {
 
   createPost = false;
 
-  constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private goRestApi: GoRestAPIService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(userId => {
-      console.log(userId,"USER ID?");
+      console.log(userId, "USER ID?");
       this.goRestApi.getUserById(userId['id']).subscribe({
         next: (user: User) => { this.user = user; this.getUserPosts(); }, //Subscriptio nested Cosa fare?
-        error: (err: ErrorFromGoRestApi) => { console.log(err);this.router.navigate(['/404']); }
+        error: (err: ErrorFromGoRestApi) => { console.log(err); this.router.navigate(['/404']); }
       })
     });
   }
@@ -57,17 +60,25 @@ export class UserCardDetailsComponent {
     })
   }
 
-  openCreatePost(refreshPosts: boolean): void{
+  openCreatePost(refreshPosts: boolean): void {
     this.createPost = !this.createPost;
     console.log(refreshPosts);
-    if(refreshPosts){this.getUserPosts();}
+    if (refreshPosts) { this.getUserPosts(); }
   }
 
-  deleteUser(){
-    console.log("delete user: ", this.user);
-    this.goRestApi.deleteUserById(this.user.id).subscribe({
-      next: (data: any) => { this.router.navigate(['/lists/users']);},
-      error: (err: any) => { console.log(err); }
+  deleteUser() {
+    this.dialog.open(DeleteConfirmationDialogComponent, { data: { user: this.user } }).afterClosed().subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.goRestApi.deleteUserById(this.user.id).subscribe({
+            next: (data: any) => { 
+              this.dialog.open(MessageDialogComponent, { data: { response: data, message: `L'utente "${this.user.name}" è stato eliminato con successo!` } });
+              this.router.navigate(['/lists/users']);
+             },
+            error: (err: any) => { this.dialog.open(MessageDialogComponent, { data: { response: err, message: 'Utente non eliminato' } }); }
+          });
+        }
+      },
     });
   }
 }

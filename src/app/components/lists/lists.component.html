@@ -1,39 +1,26 @@
 <div class="list-container">
-    @if(searchBar){
-    <app-search-bar [typeofObjToSearch]="typeOfObj" (reportSearchList)="updateList($event)"
-        (closeBar)="openSearchBar()"></app-search-bar>
+    @if(typeOfObj == 'users' || typeOfObj == 'posts'){
+    <mat-card class="title">
+        <button mat-icon-button color="primary" class="add-buttonn" (click)="createObj()">
+            <mat-icon>add</mat-icon>
+        </button>
+        <h2>{{typeOfObjName[typeOfObj]}}</h2>
+        <button mat-icon-button color="primary" class="add-buttonn" (click)="openSearchBar()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-card>
     }
     @if(typeOfObj == 'users'){
-        <mat-card class="title">
-            <h2>Utenti:</h2>
-        </mat-card>
-        @for(user of userList; track $index){
-            <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
-        }
+    @for(user of userList; track $index){
+    <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
+    }
     }
     @if (typeOfObj == 'posts') {
-        <mat-card class="title">
-            <h2>Post:</h2>
-        </mat-card>
-        @for(post of postList; track $index){
-           <app-post-card [post]="post"></app-post-card>
-        }
+    @for(post of postList; track $index){
+    <app-post-card [post]="post"></app-post-card>
     }
-    @if(!searchBar){
+    }
     <button mat-raised-button color="primary" class="load-more-button" (click)="loadMore()">
         <mat-icon>add</mat-icon>Carica altri risulatati
     </button>
-    }
-    <div class="absolute-button">
-        <button mat-fab color="primary" class="add-buttonn" (click)="createObj()">
-            <mat-icon>add</mat-icon>
-        </button>
-        <button mat-fab color="primary" class="add-buttonn" (click)="openSearchBar()">
-            @if(!searchBar){
-                <mat-icon>search</mat-icon>
-            }@else{
-                <mat-icon>lists</mat-icon>
-            }
-        </button>
-    </div>
 </div>
