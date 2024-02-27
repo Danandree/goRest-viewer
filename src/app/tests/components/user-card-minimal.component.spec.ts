@@ -33,14 +33,6 @@ describe('UserCardMinimalComponent', () => {
     spyOn(event, 'preventDefault');
     component.openDeleteUserDialog(event);
     // expect(event.preventDefault).toHaveBeenCalled();
-  });
-
-  it('should delete a user', () => {
-    // const event = new Event('click');
-    // spyOn(event, 'preventDefault');
-    // const element = document.querySelector('button');
-    // element?.dispatchEvent(event);
-    // expect(event.preventDefault).toHaveBeenCalled();
-    // component.(event);
+    expect(component.openDeleteUserDialog).toBeTruthy();
   });
 });

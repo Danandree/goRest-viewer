@@ -31,6 +31,7 @@ describe('SearchBarComponent', () => {
 
   it('should be able to search', () => {
     component.checkQuery('');
+    expect(component.resultList.length).toBe(0)
   });
 
   it('should be able to reset result', () => {

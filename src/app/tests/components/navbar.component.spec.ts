@@ -26,9 +26,11 @@ describe('NavbarComponent', () => {
   it('should check what page is', () => {
     component.isUserListPage();
     component.isPostListPage();
+    expect(component.isUserListPage()).toBeFalse();
   });
 
   it('should be able to logout', () => {
     component.logout();
+    expect(component.isUserLogged()).toBeFalse();
   });
 });

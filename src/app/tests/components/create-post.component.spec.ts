@@ -18,8 +18,6 @@ describe('CreatePostComponent', () => {
     })
     .compileComponents();
     
-    // component.userId = 1;
-
     fixture = TestBed.createComponent(CreatePostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -35,11 +33,13 @@ describe('CreatePostComponent', () => {
     component.controlGroup.get('title')?.setValue('title');
     component.controlGroup.get('body')?.setValue('body');
     component.createPost();
+    expect(component.controlGroup.value.user_id).toBe('1');
   });
 
   it('should clear a post', () => {
     component.clearPost();
     component.userId = 1;
     component.clearPost();  
+    expect(component.controlGroup.value.user_id).toBe(null);
   });
 });

@@ -12,10 +12,10 @@ describe('UserCardDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserCardDetailsComponent,HttpClientTestingModule,RouterTestingModule]
+      imports: [UserCardDetailsComponent, HttpClientTestingModule, RouterTestingModule]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(UserCardDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -28,15 +28,18 @@ describe('UserCardDetailsComponent', () => {
   it('should get user posts', () => {
     component.user = new User();
     component.getUserPosts();
+    expect(component.user).toEqual(new User());
   });
 
   it('should open and close tab for new post', () => {
     component.user = new User();
     component.openCreatePost(true);
+    expect(component.openCreatePost).toBeTruthy();
   });
 
   it('should be able to delete user', () => {
     component.user = new User();
     component.deleteUser();
+    expect(component.user).toEqual(new User());
   });
 });
