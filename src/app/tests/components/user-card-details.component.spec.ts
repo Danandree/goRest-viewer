@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserCardDetailsComponent } from '../../components/user-card-details/user-card-details.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { User } from '../../interfaces/go-rest-apidata-structure';
 
 describe('UserCardDetailsComponent', () => {
   let component: UserCardDetailsComponent;
@@ -8,7 +12,7 @@ describe('UserCardDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserCardDetailsComponent]
+      imports: [UserCardDetailsComponent,HttpClientTestingModule,RouterTestingModule]
     })
     .compileComponents();
     
@@ -19,5 +23,20 @@ describe('UserCardDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get user posts', () => {
+    component.user = new User();
+    component.getUserPosts();
+  });
+
+  it('should open and close tab for new post', () => {
+    component.user = new User();
+    component.openCreatePost(true);
+  });
+
+  it('should be able to delete user', () => {
+    component.user = new User();
+    component.deleteUser();
   });
 });

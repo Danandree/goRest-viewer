@@ -52,7 +52,7 @@ export class PostCardComponent {
     this.goRestApi.getUserById(id).subscribe({
       next: (data: any) => { this.user = data; },
       error: (err) => { console.log(err); }
-    })
+    });
   }
 
   changeCommentComponentStatus(refreshComments: boolean) {

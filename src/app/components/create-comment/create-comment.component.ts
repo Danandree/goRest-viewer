@@ -27,7 +27,7 @@ import { Comment } from '../../interfaces/go-rest-apidata-structure';
 export class CreateCommentComponent {
   @Input() postId!: number;
   @Output() closeCreateCommentComponent = new EventEmitter();
-  comment = new Comment;
+  comment = new Comment();
   controlGroup = new FormGroup({
     body: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
