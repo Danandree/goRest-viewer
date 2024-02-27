@@ -18,17 +18,25 @@ mat-card {
 
 .first-row {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding-top: 5px;
+    /* gap: 10px; */
     background-color: rgb(185, 221, 255);
 }
 
-.request {
-    width: 70%;
+.type{
+    width: 120px;
 }
-.title-results{
+
+.request {
+    width: 95%;
+    max-width: 500px;
+}
+
+.title-results {
     text-align: center;
 }
 
@@ -41,4 +49,12 @@ mat-card {
     display: flex;
     justify-content: center;
     margin-top: 5px;
+}
+
+@media screen and (min-width: 425px) {
+    .first-row {
+        flex-direction: row;
+        gap: 10px;
+    }
+
 }
