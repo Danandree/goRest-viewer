@@ -18,7 +18,6 @@ import { AuthService } from '../../auth/auth.service';
     MatDividerModule,
     RouterLink,
     MatCardModule,
-    // MatButtonToggleModule,
     NgClass,
   ],
   templateUrl: './navbar.component.html',

@@ -50,6 +50,7 @@ export class CreateCommentComponent {
     return "La mail deve essere valida";
   
   }
+  
   createComment(){
     if(this.controlGroup.valid){
       console.log(this.controlGroup.value);

@@ -50,6 +50,7 @@ export class CreatePostComponent {
       this.controlGroup.get('user_id')?.setValue(this.userId.toString());
     }
   }
+  
   getErrorMessage(form: string) {
     if (this.controlGroup.get(form)?.hasError('required')) {
       switch (form) {

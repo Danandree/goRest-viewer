@@ -42,6 +42,7 @@ export class CreateUserComponent {
   user = new User;
 
   constructor(private goRestApi: GoRestAPIService, private router: Router, private dialog: MatDialog) { }
+
   getErrorMessage(form: string) {
     if (this.controlGroup.get(form)?.hasError('required')) {
       switch (form) {
@@ -63,7 +64,7 @@ export class CreateUserComponent {
     if (this.controlGroup.valid) {
       this.user = this.controlGroup.value as User;
       this.goRestApi.createUser(this.user).subscribe({
-        next: (data: User) => { console.log(data, "CREAZIONE OK"); this.router.navigate(['/users', data.id]); },
+        next: (data: User) => { this.router.navigate(['/users', data.id]); },
         error: (err: any) => {
           this.dialog.open(MessageDialogComponent, {
             data: { response: err, message: 'Utente non creato' }
