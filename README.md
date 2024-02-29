@@ -1,6 +1,6 @@
 # GoRestViewer
 
-Applicazione che permette di visualizzare e modificare le informazioni dal sito go.restApi.com [https://gorest.co.in]https://gorest.co.in<br>
+Applicazione che permette di visualizzare e modificare le informazioni dal sito https://gorest.co.in<br>
 Per funzionare l'applicazione ha bisogno di un token d'accesso che viene generato facendo il login al sito [Go Rest](https://gorest.co.in/my-account/access-tokens)<br>
 All'apertura dell'applicazione verrà visualizzato un form di login, in cui l'utente dovrà inserire il token d'accesso.<br>
 Dopo aver inserito il token correttamente si accede alla pagina con la lista degli utenti iscritti al sito.<br>
