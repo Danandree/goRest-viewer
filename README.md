@@ -1,6 +1,6 @@
 # GoRestViewer
 
-Applicazione che permette di visualizzare e modificare le informazioni dal sito go.restApi.com [https://gorest.co.in]https://gorest.co.in<br>
+Applicazione che permette di visualizzare e modificare le informazioni dal sito https://gorest.co.in<br>
 Per funzionare l'applicazione ha bisogno di un token d'accesso che viene generato facendo il login al sito [Go Rest](https://gorest.co.in/my-account/access-tokens)<br>
 All'apertura dell'applicazione verrà visualizzato un form di login, in cui l'utente dovrà inserire il token d'accesso.<br>
 Dopo aver inserito il token correttamente si accede alla pagina con la lista degli utenti iscritti al sito.<br>
@@ -19,4 +19,4 @@ Dopo aver effettuato l'accesso, l'applicazione permette di effettuare le seguent
 > Gli utenti, i post e i commenti creati possono essere visualizzati solo dall'utente che li ha creati
 
 > [!NOTE]
-> Per provare l'applicazione installare i pacchetti npm e lanciare il server con ng serve
+> Per provare l'applicazione installare i pacchetti npm e lanciare l'applicazione in locale con ng serve
