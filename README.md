@@ -19,4 +19,4 @@ Dopo aver effettuato l'accesso, l'applicazione permette di effettuare le seguent
 > Gli utenti, i post e i commenti creati possono essere visualizzati solo dall'utente che li ha creati
 
 > [!NOTE]
-> Per provare l'applicazione installare i pacchetti npm e lanciare il server con ng serve
+> Per provare l'applicazione installare i pacchetti npm e lanciare l'applicazione in locale con ng serve
