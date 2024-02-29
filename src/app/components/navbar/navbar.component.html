@@ -3,12 +3,13 @@
         <h1>GoRest Viewer</h1>
     </div>
     @if(isUserLogged()){
+    <mat-divider></mat-divider>
     <div class="buttons">
-        <button mat-raised-button [routerLink]="['/lists/users']" [disabled]="isUserListPage()">
+        <button mat-raised-button [routerLink]="['/lists/users']" [ngClass]="{'selected': isUserListPage()}">
             <mat-icon class="icon">group</mat-icon>
             <p class="buttons-text">Utenti</p>
         </button>
-        <button mat-raised-button [routerLink]="['/lists/posts']" [disabled]="isPostListPage()">
+        <button mat-raised-button [routerLink]="['/lists/posts']" [ngClass]="{'selected': isPostListPage()}">
             <mat-icon>post_add</mat-icon>
             <p class="buttons-text">Posts</p>
         </button>
@@ -17,6 +18,5 @@
             <p class="buttons-text">Logout</p>
         </button>
     </div>
-    <mat-divider></mat-divider>
     }
 </mat-card>

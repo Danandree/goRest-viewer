@@ -1,14 +1,26 @@
-mat-card{
+mat-card {
     width: 95%;
-    margin:auto;
+    margin: auto;
     margin-top: 10px;
     background-color: rgb(185, 221, 255);
 }
 
-h1{
+.title {
+    text-align: center;
+    width: 70%;
+    background-color: rgb(127, 192, 252);
+    padding: 5px;
+    margin: auto;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+h1 {
     text-align: center;
     margin-top: 10px;
 }
+
 .create-user-card {
     display: flex;
     flex-direction: column;
@@ -16,6 +28,7 @@ h1{
     width: 95%;
     margin: auto;
     margin-top: 10px;
+    padding-top: 10px;
 }
 
 /* mat-radio-group{
@@ -26,14 +39,14 @@ h1{
     max-width: 300px;
     margin: auto;
 } */
-.multiple-choice{
+.multiple-choice {
     display: flex;
     justify-content: space-between;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
-    gap:10px;
+    gap: 10px;
 }

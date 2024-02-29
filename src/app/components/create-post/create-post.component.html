@@ -1,5 +1,7 @@
-<mat-card [ngClass]="{'user-detail-size': userId}">
+<mat-card class="title">
     <h2>Crea un nuovo post</h2>
+</mat-card>
+<mat-card [ngClass]="{'user-detail-size': userId}">
     <form [formGroup]="controlGroup" class="create-post-card">
         @if(!userId){
             <mat-form-field>

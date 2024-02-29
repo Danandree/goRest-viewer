@@ -1,4 +1,8 @@
 @if(user){
+    <mat-card class="title">
+
+        <h2>Dettagli utente:</h2>
+    </mat-card>
 <div class="user-details-container">
     <mat-card>
         <div class="user-status" [ngClass]="{'red': user.status == 'inactive', 'green': user.status == 'active'}"></div>

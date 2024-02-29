@@ -8,6 +8,16 @@ mat-card {
     background-color: rgb(185, 221, 255);
 }
 
+.title {
+    text-align: center;
+    width: 70%;
+    background-color: rgb(127, 192, 252);
+    padding: 5px;
+    margin: auto;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
 .buttons {
     display: flex;
     justify-content: end;
@@ -42,6 +52,7 @@ mat-spinner {
     margin: auto;
 }
 .subTitle{
+    background-color: rgb(127, 192, 252);
     width: 75%;
     margin:auto;
     margin-top:5px;

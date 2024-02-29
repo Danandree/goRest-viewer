@@ -10,10 +10,10 @@ mat-card-footer{
 }
 
 .red-border{
-    border: solid red 2px;
-    border-bottom: solid red 10px;
+    border: solid red 3px;
+    /* border-bottom: solid red 10px; */
 }
 
 .green-border{
-    border: solid green 2px;
+    border: solid green 3px;
 }

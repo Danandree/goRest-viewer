@@ -7,7 +7,9 @@
     margin-top: 10px;
     background-color: rgb(127, 192, 252);
 }
-
+mat-divider{
+    margin-bottom: 10px;
+}
 .buttons {
     display: flex;
     justify-content: space-around;
@@ -36,7 +38,7 @@
 }
 
 .selected{
-    border: 3px solid green;
+    border: 3px solid blue;
 }
 
 @media screen and (max-width: 400px) {
