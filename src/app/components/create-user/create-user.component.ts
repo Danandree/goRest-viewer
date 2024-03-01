@@ -65,16 +65,10 @@ export class CreateUserComponent {
       this.user = this.controlGroup.value as User;
       this.goRestApi.createUser(this.user).subscribe({
         next: (data: User) => { this.router.navigate(['/users', data.id]); },
-        error: (err: any) => {
-          this.dialog.open(MessageDialogComponent, {
-            data: { response: err, message: 'Utente non creato' }
-          })
-        }
+        error: (err: any) => { this.dialog.open(MessageDialogComponent, { data: { response: err, message: 'Utente non creato' } }); }
       });
     }
   }
 
-  clearForm() {
-    this.controlGroup.reset();
-  }
+  clearForm() { this.controlGroup.reset(); }
 }

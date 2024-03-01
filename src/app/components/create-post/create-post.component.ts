@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
-import { Post } from '../../interfaces/go-rest-apidata-structure';
+import { ErrorFromGoRestApi, Post } from '../../interfaces/go-rest-apidata-structure';
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 
 
@@ -50,7 +50,7 @@ export class CreatePostComponent {
       this.controlGroup.get('user_id')?.setValue(this.userId.toString());
     }
   }
-  
+
   getErrorMessage(form: string) {
     if (this.controlGroup.get(form)?.hasError('required')) {
       switch (form) {
@@ -71,23 +71,11 @@ export class CreatePostComponent {
       this.post.body = this.controlGroup.value.body!;
       this.post.title = this.controlGroup.value.title!;
       this.post.user_id = +this.controlGroup.value.user_id!;
-      // this.post = this.controlGroup.value as Post;
       this.goRestApi.createPost(this.post).subscribe({
-        next: (data: any) => {
-          console.log(data);
-          if (this.userId) {
-            this.closeCreatePostComponent.emit(true);
-          } else {
-            this.router.navigate(['/lists/posts']);
-          }
-        },
-        error: (err: any) => {
-          this.dialog.open(MessageDialogComponent, {
-            data: { response: err, message: 'Post non creato, errore inaspettato' }
-          });
-        },
+        next: (data: any) => { this.userId ? this.closeCreatePostComponent.emit(true) : this.router.navigate(['/lists/posts']); },
+        error: (err: ErrorFromGoRestApi) => { this.dialog.open(MessageDialogComponent, { data: { response: err, message: 'Post non creato, errore inaspettato' } }); },
       });
-    } 
+    }
   }
 
   clearPost() {

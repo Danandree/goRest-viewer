@@ -36,11 +36,9 @@ export class PostCardComponent {
   constructor(private goRestApi: GoRestAPIService, private router: Router) { }
   ngOnInit() {
     this.getComments();
-    if (!this.user) {
-      this.getUserById(this.post.user_id);
-    }
+    if (!this.user) { this.getUserById(this.post.user_id); }
   }
-  
+
   getComments() {
     this.goRestApi.getCommentFromPostId(this.post.id).subscribe({
       next: (data: any) => { this.commentsList = data; },
@@ -60,7 +58,5 @@ export class PostCardComponent {
     if (refreshComments) { this.getComments(); }
   }
 
-  isUserPage() {
-    return this.router.url.includes('users') ? true : false;
-  }
+  isUserPage() { return this.router.url.includes('users') ? true : false; }
 }

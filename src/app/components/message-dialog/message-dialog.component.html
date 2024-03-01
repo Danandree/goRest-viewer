@@ -3,7 +3,7 @@
     <h2>Ops c'è stato un errore!</h2>
     <h3>Errore: {{data.response.status}}</h3>
     <!-- <h3>Messaggio:</h3> -->
-    @if(data.response.status == 401){
+    @if(data.response.status == 401 || data.response.status == 404){
     <h3>{{errorToMessage[data.response.status]}}</h3>
     }@else{
     <h3>Messaggio: {{data.response.error[0].field}} {{data.response.error[0].message}}</h3>

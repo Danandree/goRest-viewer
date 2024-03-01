@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
-import { User } from '../../interfaces/go-rest-apidata-structure';
+import { ErrorFromGoRestApi, User } from '../../interfaces/go-rest-apidata-structure';
 
 import { GoRestAPIService } from '../../services/go-rest-api.service';
 
@@ -40,10 +40,14 @@ export class UserCardMinimalComponent {
         if (data) {
           this.goRestApi.deleteUserById(this.user.id).subscribe({
             next: (data: any) => { 
-              this.deleteUserEvent.emit(this.user); 
               this.dialog.open(MessageDialogComponent, { data: { response: data, message: `L'utente "${this.user.name}" è stato eliminato con successo!` } });
+              this.deleteUserEvent.emit(this.user);
             },
-            error: (err: any) => { console.log(err); }
+            error: (err: ErrorFromGoRestApi) => { 
+              console.log(err); 
+              this.dialog.open(MessageDialogComponent, { data: { response: err, message: "Utente non trovato" } });
+              this.deleteUserEvent.emit(this.user);
+            },
           });
         }
       },

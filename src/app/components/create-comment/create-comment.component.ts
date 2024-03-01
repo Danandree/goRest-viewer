@@ -59,7 +59,7 @@ export class CreateCommentComponent {
       this.comment.email = this.controlGroup.value.email!;
       this.comment.post_id = this.postId;
       this.goRestApi.createComment(this.comment).subscribe({
-        next: (data: any) => { console.log(data); this.closeCreateComment(true);},
+        next: (data: any) => { this.closeCreateComment(true);},
         error: (err: any) => { console.log(err); },
       });
     }

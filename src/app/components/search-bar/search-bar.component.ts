@@ -71,7 +71,7 @@ export class SearchBarComponent {
       if (this.typeofObjToSearch === 'users') { this.optFields = ['name', 'email']; }
       if (this.typeofObjToSearch === 'posts') { this.optFields = ['title', 'body']; }
     });
-    
+
     this.controlField.get('search')?.disable();
     this.controlField.valueChanges.pipe(
       debounceTime(300),
@@ -95,18 +95,15 @@ export class SearchBarComponent {
     this.controlField.get('search')?.setValue('');
   }
 
-  deleteUser(user: User): void {
-    this.resultList = this.resultList.filter(u => u.id != user.id);
-  }
+  deleteUser(user: User): void { this.resultList = this.resultList.filter(u => u.id != user.id); }
 
   loadMore(): void {
     this.page++;
     this.goRestApi.searchObject(this.queryToSearch, this.fieldToSearch, this.typeofObjToSearch, this.page, this.objPerPage).subscribe({
-      next: (data) => { 
+      next: (data) => {
         let objInResultList = this.resultList.length;
-        this.resultList = this.resultList.concat(data); 
-        if(objInResultList == this.resultList.length) { this.loadMoreButton = false; }
-        console.log(`objInResultList: ${objInResultList}, resultList: ${this.resultList.length}`);
+        this.resultList = this.resultList.concat(data);
+        if (objInResultList == this.resultList.length) { this.loadMoreButton = false; }
       },
       error: (err) => { console.log(err); }
     });

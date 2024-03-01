@@ -19,6 +19,7 @@ import { ErrorFromGoRestApi } from '../../interfaces/go-rest-apidata-structure';
 export class MessageDialogComponent {
   errorToMessage = {
     401: "Token non valido",
+    404: "Risorsa non trovata"
   }
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: {response: ErrorFromGoRestApi, message: string}){}
