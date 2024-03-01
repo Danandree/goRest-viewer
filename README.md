@@ -1,7 +1,7 @@
 # GoRestViewer
 
 
-Applicazione che permette di visualizzare e modificare le informazioni dal sito https://gorest.co.in<br>
+Applicazione in Angular che permette di visualizzare e modificare le informazioni dal sito https://gorest.co.in<br>
 > [!IMPORTANT]
 > Per funzionare l'applicazione ha bisogno di un token d'accesso che viene generato facendo il login al sito [Go Rest](https://gorest.co.in/my-account/access-tokens)<br>
 
@@ -22,4 +22,7 @@ Avendo ottenuto l'accesso, l'applicazione permette di effettuare le seguenti ope
 > Gli utenti, i post e i commenti creati possono essere visualizzati solo dall'utente che li ha creati
 
 ### Test
-Per provare l'applicazione installare i pacchetti npm e lanciare l'applicazione in locale con ng serve
+Per provare l'applicazione bisogna aver installati sul proprio sistema:
+- angular cli
+- node.js
+Una vola installati clonare il repository, installare i pacchetti npm con npm install e far partire l'applicaz<ione in locale con il comanbdo angular ng serve
