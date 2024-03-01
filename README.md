@@ -23,6 +23,14 @@ Avendo ottenuto l'accesso, l'applicazione permette di effettuare le seguenti ope
 
 ### Test
 Per provare l'applicazione bisogna aver installati sul proprio sistema:
-- angular cli
 - node.js
-Una vola installati clonare il repository, installare i pacchetti npm con npm install e far partire l'applicaz<ione in locale con il comanbdo angular ng serve
+- npm package manager
+
+Se si hanno già node.js e npm:
+- Installare l'Angular CLI tramite npm (npm install -g @angular/cli)
+- Installare i pacchetti che servono all'applicazione con "npm install"
+- Lanciare l'applicazione in locale con il comando "ng serve"
+
+> [!NOTE]
+> Se non vuoi scaricare niente puoi provare direttamente l'applicazione da qui<br>
+> [Go Rest Viewer](https://angular-test-7bbd6.web.app)
