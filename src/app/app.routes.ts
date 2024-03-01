@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
-import { UserCardDetailsComponent } from './components/user-card-details/user-card-details.component';
+import { UserCardDetailsComponent } from './components/user-page/user-page.component';
 import { ListsComponent } from './components/lists/lists.component';
 import { Page404Component } from './components/page404/page404.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';

@@ -1,19 +1,18 @@
-mat-card{
-    padding:10px;
+mat-card {
+    padding: 10px;
     margin-top: 10px;
     background-color: rgb(185, 221, 255);
 }
 
-mat-card-footer{
+mat-card-footer {
     display: flex;
     justify-content: end;
 }
 
-.red-border{
+.red-border {
     border: solid red 3px;
-    /* border-bottom: solid red 10px; */
 }
 
-.green-border{
+.green-border {
     border: solid green 3px;
 }

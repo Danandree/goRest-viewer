@@ -56,8 +56,10 @@ mat-card {
 }
 
 .load-more-button {
+    text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 5px;
 }
 

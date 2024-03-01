@@ -1,21 +1,20 @@
-.message-dialog{
+.message-dialog {
     text-align: center;
-    border:red 2px solid;
-    width:100%;
+    width: 100%;
     max-width: 500px;
     background-color: rgb(185, 221, 255);
 }
 
-mat-expansion-panel{
+mat-expansion-panel {
     background-color: rgb(159, 209, 255);
 }
 
-h2{
+h2 {
     padding: 5px 10px;
     text-align: center;
 }
 
-button{
+button {
     margin: 10px auto;
     width: 200px;
 }

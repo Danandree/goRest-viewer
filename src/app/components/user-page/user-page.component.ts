@@ -20,7 +20,7 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
 
 
 @Component({
-  selector: 'app-user-card-details',
+  selector: 'app-user-page',
   standalone: true,
   imports: [
     MatCardModule,
@@ -32,10 +32,10 @@ import { GoRestAPIService } from '../../services/go-rest-api.service';
     NgClass,
     CreatePostComponent,
   ],
-  templateUrl: './user-card-details.component.html',
-  styleUrl: './user-card-details.component.css'
+  templateUrl: './user-page.component.html',
+  styleUrl: './user-page.component.css'
 })
-export class UserCardDetailsComponent {
+export class UserPageComponent {
 
   user!: User;
   postsList!: Post[];

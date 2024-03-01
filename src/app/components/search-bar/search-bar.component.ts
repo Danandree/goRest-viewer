@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 
-import { User } from '../../interfaces/go-rest-apidata-structure'
+import { Post, User } from '../../interfaces/go-rest-apidata-structure'
 
 import { UserCardMinimalComponent } from '../user-card-minimal/user-card-minimal.component';
 import { PostCardComponent } from '../post-card/post-card.component';
@@ -55,8 +55,11 @@ export class SearchBarComponent {
 
   resultList: any[] = [];
   page = 1;
-  objPerPage = 20;
-  resultCall$!: Observable<any>;
+  objPerPage = 10;
+  queryToSearch: string = '';
+  fieldToSearch: string = '';
+
+  loadMoreButton = true;
 
   constructor(private goRestApi: GoRestAPIService, private router: Router, private route: ActivatedRoute) { }
 
@@ -68,20 +71,21 @@ export class SearchBarComponent {
       if (this.typeofObjToSearch === 'users') { this.optFields = ['name', 'email']; }
       if (this.typeofObjToSearch === 'posts') { this.optFields = ['title', 'body']; }
     });
+    
     this.controlField.get('search')?.disable();
-
     this.controlField.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(searchTerm => this.checkQuery(searchTerm)))
-      .subscribe(data => { this.resultList = data; });
+      .subscribe((data: Post[] | User[]) => { this.resultList = data; });
   }
 
-  checkQuery(searchTerm: any): Observable<any> {
+  checkQuery(searchTerm: any): Observable<Post[] | User[]> {
     if (searchTerm.search != '') {
-      // this.page = 1;
-      this.resultCall$ = this.goRestApi.searchObject(searchTerm.search, searchTerm.field, this.typeofObjToSearch, this.page, this.objPerPage);
-      return this.resultCall$;
+      this.page = 1;
+      this.queryToSearch = searchTerm.search;
+      this.fieldToSearch = searchTerm.field;
+      return this.goRestApi.searchObject(searchTerm.search, searchTerm.field, this.typeofObjToSearch, this.page, this.objPerPage);
     }
     else { return new Observable<any>(observer => observer.next([])); }
   }
@@ -97,8 +101,13 @@ export class SearchBarComponent {
 
   loadMore(): void {
     this.page++;
-    this.resultCall$.subscribe({
-      next: (data) => { this.resultList = this.resultList.concat(data); },
+    this.goRestApi.searchObject(this.queryToSearch, this.fieldToSearch, this.typeofObjToSearch, this.page, this.objPerPage).subscribe({
+      next: (data) => { 
+        let objInResultList = this.resultList.length;
+        this.resultList = this.resultList.concat(data); 
+        if(objInResultList == this.resultList.length) { this.loadMoreButton = false; }
+        console.log(`objInResultList: ${objInResultList}, resultList: ${this.resultList.length}`);
+      },
       error: (err) => { console.log(err); }
     });
   }

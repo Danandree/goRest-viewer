@@ -36,7 +36,7 @@
 @if(resultList.length>0){
 <div class="results">
     @if(typeofObjToSearch == 'users'){
-    @for(user of resultList ;track $index){
+    @for(user of resultList; track $index){
     <app-user-card-minimal [user]="user" (deleteUserEvent)="deleteUser($event)"></app-user-card-minimal>
     }
     }
@@ -46,9 +46,20 @@
     }
     }
 </div>
+@if(loadMoreButton){
+<!-- @if(resultList.length >= objPerPage*page){ -->
 <div class="load-more-button">
     <button mat-raised-button color="primary" (click)="loadMore()">
         <mat-icon>add</mat-icon>Carica altri risultati
     </button>
 </div>
+}
+@else{
+<!-- @if(resultList.length <= objPerPage*page){ -->
+<!-- <div class="load-more-button"> -->
+<mat-card class="load-more-button">
+    <p><strong>Sono stati caricati tutti i risultati</strong></p>
+</mat-card>
+<!-- </div> -->
+}
 }

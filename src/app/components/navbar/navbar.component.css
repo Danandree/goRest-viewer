@@ -1,15 +1,16 @@
 .navbar-container {
     display: flex;
     flex-direction: column;
-    /* border-bottom: 2px solid black; */
     width: 95%;
     margin: auto;
     margin-top: 10px;
     background-color: rgb(127, 192, 252);
 }
-mat-divider{
+
+mat-divider {
     margin-bottom: 10px;
 }
+
 .buttons {
     display: flex;
     justify-content: space-around;
@@ -24,25 +25,16 @@ mat-divider{
     text-align: center;
 }
 
-/* button {
-    background-color: rgb(185, 221, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: red 2px solid;
+.buttons-text {
     margin: auto;
-} */
-
-.buttons-text{
-    margin:auto;
 }
 
-.selected{
+.selected {
     border: 3px solid blue;
 }
 
 @media screen and (max-width: 400px) {
-    .buttons-text{
+    .buttons-text {
         display: none;
     }
 }

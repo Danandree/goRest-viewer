@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserCardDetailsComponent } from '../../components/user-card-details/user-card-details.component';
+import { UserPageComponent } from '../../components/user-page/user-page.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { User } from '../../interfaces/go-rest-apidata-structure';
 
-describe('UserCardDetailsComponent', () => {
-  let component: UserCardDetailsComponent;
-  let fixture: ComponentFixture<UserCardDetailsComponent>;
+describe('UserPageComponent', () => {
+  let component: UserPageComponent;
+  let fixture: ComponentFixture<UserPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserCardDetailsComponent, HttpClientTestingModule, RouterTestingModule]
+      imports: [UserPageComponent, HttpClientTestingModule, RouterTestingModule]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(UserCardDetailsComponent);
+    fixture = TestBed.createComponent(UserPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

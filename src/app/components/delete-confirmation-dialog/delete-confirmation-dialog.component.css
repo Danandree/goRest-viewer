@@ -1,16 +1,12 @@
-.delete-confirmation-dialog{
+.delete-confirmation-dialog {
     display: flex;
-    /* border:red 2px solid; */
-    width:100%;
+    width: 100%;
     max-width: 500px;
     text-align: center;
     padding: 5px;
 }
-p{
-    /* border: solid 2px red; */
-}
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: space-around;
 }
